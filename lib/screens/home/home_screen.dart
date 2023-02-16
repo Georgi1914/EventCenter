@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../presentation/padding_manager.dart';
 import 'home_viewmodel.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +18,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: PaddingManager.p1,
+                  padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
                   child: Row(
                     children: [
                       const CircleAvatar(
@@ -30,12 +29,19 @@ class HomeScreen extends StatelessWidget {
                         minRadius: 24,
                       ),
                       Column(
-                        children: const [
+                        children: [
                           //todo Fetch from db
-                          Text('Good morning'),
-                          Text('Name SecondName'),
+                          const Text('Good morning'),
                         ],
                       ),
+                      Spacer(),
+                      FloatingActionButton(
+                        onPressed: () => print(12),
+                        child: Icon(
+                          Icons.add,
+                          size: 56,
+                        ),
+                      )
                     ],
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FontFamily {
-  static const String openSansFontFamily = 'Urbanist';
+  static const String urbanist = 'Urbanist';
 }
 
 class FontWeightManager {
@@ -12,4 +12,5 @@ class FontWeightManager {
 
 class FontSize {
   static const double s4 = 4.0;
+  static const double s14 = 14.0;
 }
