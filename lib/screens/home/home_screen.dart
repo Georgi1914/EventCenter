@@ -14,40 +14,56 @@ class HomeScreen extends StatelessWidget {
         color: Colors.red,
         child: SafeArea(
           child: ColoredBox(
-            color: Theme.of(context).backgroundColor,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-                  child: Row(
-                    children: [
-                      const CircleAvatar(
+              color: Theme.of(context).backgroundColor,
+              child: GridView.count(
+                crossAxisCount: 2,
+                children: [
+                  Column(
+                    children: const [
+                      CircleAvatar(
                         backgroundImage: NetworkImage(
-                          //todo Fetch the image from db
                           'https://img.favpng.com/7/7/21/pfc-levski-sofia-bc-levski-sofia-pfc-lokomotiv-plovdiv-first-professional-football-league-png-favpng-LqV2xLbsMkmrGgwi99kMSxf3D.jpg',
                         ),
                         minRadius: 24,
                       ),
-                      Column(
-                        children: [
-                          //todo Fetch from db
-                          const Text('Good morning'),
-                        ],
-                      ),
-                      Spacer(),
-                      FloatingActionButton(
-                        onPressed: () => print(12),
-                        child: Icon(
-                          Icons.add,
-                          size: 56,
-                        ),
-                      )
+                      Text('Title')
                     ],
                   ),
-                ),
-              ],
-            ),
-          ),
+                  Column(
+                    children: const [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          'https://img.favpng.com/7/7/21/pfc-levski-sofia-bc-levski-sofia-pfc-lokomotiv-plovdiv-first-professional-football-league-png-favpng-LqV2xLbsMkmrGgwi99kMSxf3D.jpg',
+                        ),
+                        minRadius: 24,
+                      ),
+                      Text('Title2')
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          'https://img.favpng.com/7/7/21/pfc-levski-sofia-bc-levski-sofia-pfc-lokomotiv-plovdiv-first-professional-football-league-png-favpng-LqV2xLbsMkmrGgwi99kMSxf3D.jpg',
+                        ),
+                        minRadius: 24,
+                      ),
+                      Text('Title3')
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          'https://img.favpng.com/7/7/21/pfc-levski-sofia-bc-levski-sofia-pfc-lokomotiv-plovdiv-first-professional-football-league-png-favpng-LqV2xLbsMkmrGgwi99kMSxf3D.jpg',
+                        ),
+                        minRadius: 24,
+                      ),
+                      Text('Title4')
+                    ],
+                  ),
+                ],
+              )),
         ),
       ),
     );

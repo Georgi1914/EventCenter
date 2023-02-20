@@ -10,8 +10,11 @@ class Requests {
     return response.data;
   }
 
-  Future<Response> postRequest(String url, Object? body,
-      {Options? option}) async {
+  Future<Response> postRequest(
+    String url,
+    Object? body, {
+    Options? option,
+  }) async {
     final Response response = await _dio.post(
       url,
       options: option,
