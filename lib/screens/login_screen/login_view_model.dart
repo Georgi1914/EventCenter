@@ -18,11 +18,11 @@ class LoginViewModel extends ChangeNotifier {
     _authService.exceptionMessage = '';
     final user = await _authService.signIn(
         emailController.value.text, passwordController.value.text);
-    checkEmptyFields();
+    _checkEmptyFields();
     return user;
   }
 
-  void checkEmptyFields() {
+  void _checkEmptyFields() {
     if (emailController.value.text.isEmpty ||
         passwordController.value.text.isEmpty) {
       _authService.exceptionMessage = AppStrings.emptyFieldsException;

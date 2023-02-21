@@ -16,6 +16,7 @@ class LoginTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isPasswordField = hintText == AppStrings.password;
+    final bool isEmailField = hintText == AppStrings.email;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +44,7 @@ class LoginTextForm extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: TextField(
-            textCapitalization: hintText == AppStrings.email
+            textCapitalization: isEmailField
                 ? TextCapitalization.none
                 : TextCapitalization.words,
             controller: textController,

@@ -12,41 +12,42 @@ class LoginButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final viewModel = context.watch<LoginViewModel>();
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(60, 8, 60, 16),
-      child: SizedBox(
-        width: double.maxFinite,
-        child: TextButton(
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(60, 8, 60, 16),
+        child: SizedBox(
+          width: double.maxFinite,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+              ),
+              foregroundColor: AppColors.white,
+              backgroundColor: AppColors.red,
+              disabledBackgroundColor: AppColors.neutralsGray,
             ),
-            foregroundColor: AppColors.white,
-            backgroundColor: AppColors.red,
-            disabledBackgroundColor: AppColors.neutralsGray,
-          ),
-          onPressed: () async => await viewModel.signIn()
-              ? Navigator.pushReplacementNamed(context, RouteManager.homeScreen)
-              : ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      viewModel.exceptionText.isEmpty
-                          ? AppStrings.invalidCredentials
-                          : viewModel.exceptionText,
-                    ),
-                  ),
-                ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: Text(
-              AppStrings.signIn,
-              style: Theme.of(context).textTheme.labelMedium,
+            onPressed: () async {
+              final viewModel = context.watch<LoginViewModel>();
+              await viewModel.signIn()
+                  ? Navigator.pushReplacementNamed(
+                      context, RouteManager.homeScreen)
+                  : ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          viewModel.exceptionText.isEmpty
+                              ? AppStrings.invalidCredentials
+                              : viewModel.exceptionText,
+                        ),
+                      ),
+                    );
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: Text(
+                AppStrings.signIn,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
