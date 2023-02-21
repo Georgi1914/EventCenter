@@ -6,6 +6,7 @@ import '../data/requests.dart';
 import '../data/services/auth_service.dart';
 import '../global_variables.dart';
 import '../screens/home/home_viewmodel.dart';
+import '../screens/login_screen/login_view_model.dart';
 import '../screens/register_screen/register_view_model.dart';
 
 final getIt = GetIt.instance;
@@ -23,5 +24,6 @@ void setup() {
         requests: Requests(dio: Dio(BaseOptions(baseUrl: baseAuthUrl))),
       ),
     )
-    ..registerFactory(() => RegisterViewModel(authServices: getIt()));
+    ..registerFactory(() => RegisterViewModel(authServices: getIt()))
+    ..registerFactory(() => LoginViewModel(authService: getIt()));
 }
