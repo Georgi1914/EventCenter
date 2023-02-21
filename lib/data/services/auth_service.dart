@@ -35,6 +35,7 @@ class AuthService {
           'firstName': user.firstName,
           'lastName': user.lastName
         }),
+        //todo create model
       );
       if (response.statusCode != 200) {
         exceptionMessage = response.data.toString();
