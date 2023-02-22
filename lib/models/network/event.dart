@@ -8,6 +8,28 @@ part 'event.g.dart';
 class NetworkEvent {
   @JsonKey(defaultValue: 0)
   final int id;
+  final Attributes attributes;
+
+  NetworkEvent(
+    this.id,
+    this.attributes,
+  );
+
+  DomainEvent toEvent() => DomainEvent(
+        id,
+        attributes.name,
+        DateTime.tryParse(attributes.date) ?? DateTime.utc(0),
+        attributes.description,
+        attributes.address,
+      );
+
+  factory NetworkEvent.fromJson(Map<String, dynamic> json) =>
+      _$NetworkEventFromJson(json);
+  Map<String, dynamic> toJson() => _$NetworkEventToJson(this);
+}
+
+@JsonSerializable()
+class Attributes {
   @JsonKey(defaultValue: '')
   final String name;
   @JsonKey(defaultValue: '')
@@ -17,17 +39,10 @@ class NetworkEvent {
   @JsonKey(defaultValue: '')
   final String address;
 
-  NetworkEvent(this.id, this.name, this.date, this.description, this.address);
+  Attributes(this.name, this.date, this.description, this.address);
 
-  DomainEvent toEvent() => DomainEvent(
-        id,
-        name,
-        DateTime.tryParse(date) ?? DateTime.utc(0),
-        description,
-        address,
-      );
+  factory Attributes.fromJson(Map<String, dynamic> json) =>
+      _$AttributesFromJson(json);
 
-  factory NetworkEvent.fromJson(Map<String, dynamic> json) =>
-      _$NetworkEventFromJson(json);
-  Map<String, dynamic> toJson() => _$NetworkEventToJson(this);
+  Map<String, dynamic> toJson() => _$AttributesToJson(this);
 }
