@@ -1,3 +1,3 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final baseAuthUrl = dotenv.env['BASE_AUTH_URL']!;
+final baseURL = dotenv.env['BASE_URL']!;

@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class Requests {
   final Dio _dio;
 
-  Requests({required dio}) : _dio = dio;
+  Requests({required Dio dio}) : _dio = dio;
 
   Future getRequest(String url) async {
     final Response response = await _dio.get(url);

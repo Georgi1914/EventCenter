@@ -1,17 +1,33 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../ui/event.dart';
+
 part 'event.g.dart';
 
 @JsonSerializable()
-class Event {
-  final int? id;
-  final String? name;
-  final String? date;
-  final String? description;
-  final String? address;
+class NetworkEvent {
+  @JsonKey(defaultValue: 0)
+  final int id;
+  @JsonKey(defaultValue: '')
+  final String name;
+  @JsonKey(defaultValue: '')
+  final String date;
+  @JsonKey(defaultValue: '')
+  final String description;
+  @JsonKey(defaultValue: '')
+  final String address;
 
-  Event(this.id, this.name, this.date, this.description, this.address);
+  NetworkEvent(this.id, this.name, this.date, this.description, this.address);
 
-  factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
-  Map<String, dynamic> toJson() => _$EventToJson(this);
+  DomainEvent toEvent() => DomainEvent(
+        id,
+        name,
+        DateTime.tryParse(date) ?? DateTime.utc(0),
+        description,
+        address,
+      );
+
+  factory NetworkEvent.fromJson(Map<String, dynamic> json) =>
+      _$NetworkEventFromJson(json);
+  Map<String, dynamic> toJson() => _$NetworkEventToJson(this);
 }
