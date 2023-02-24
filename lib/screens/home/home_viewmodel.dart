@@ -14,13 +14,14 @@ class HomeVM extends ChangeNotifier {
 
   Future<void> init() async {
     events = await _repo.getAllEvents();
+    notifyListeners();
   }
 
-  // String dateToString(int index) {
-  //   final String result = '${weekday(index)}, ';
-  //   result = result + DateFormat.ABBR_MONTH
-  //   events[index].date.month;
-  // }
+  int get eventsLength => events.length;
+
+  String getEventAddress(int index) => events[index].address;
+
+  String getEventName(int index) => events[index].name;
 
   String formattedDate(int index) =>
       '${DateFormat('yMMMEd').format(events[index].date)} ${DateFormat('Hm').format(events[index].date)}';
