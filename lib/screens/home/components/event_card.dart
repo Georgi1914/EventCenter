@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../../presentation/color_manager.dart';
 import '../home_viewmodel.dart';
+import 'address_row.dart';
+import 'overflow_text_widget.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
@@ -15,6 +17,7 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<HomeVM>();
+    final theme = Theme.of(context).textTheme;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.cardColor,
@@ -43,26 +46,15 @@ class EventCard extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              viewModel.getEventName(index),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: AppColors.white,
-              ),
+            OverflowTextWidget(
+                text: viewModel.getEventName(index), style: theme.headline2),
+            OverflowTextWidget(
+              text: viewModel.formattedDate(index),
+              style: theme.subtitle1,
             ),
-            Text(
-              viewModel.formattedDate(index),
-              style: const TextStyle(
-                fontSize: 16,
-                color: AppColors.primaryPurple,
-              ),
-            ),
-            Text(
-              viewModel.getEventAddress(index),
-              style: const TextStyle(
-                fontSize: 16,
-              ),
+            AddressRow(
+              text: viewModel.getEventAddress(index),
+              style: theme.subtitle2,
             ),
           ],
         ),

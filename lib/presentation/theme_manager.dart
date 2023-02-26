@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'color_manager.dart';
 import 'font_manager.dart';
 
 ThemeData getApplicationTheme() => ThemeData(
@@ -7,4 +8,21 @@ ThemeData getApplicationTheme() => ThemeData(
       backgroundColor: const Color.fromARGB(255, 31, 34, 42),
       cardColor: const Color.fromARGB(100, 31, 34, 42),
       fontFamily: FontFamily.urbanist,
+      textTheme: const TextTheme(
+        headline2: TextStyle(
+          fontSize: FontSize.s16,
+          fontWeight: FontWeightManager.bold,
+          color: AppColors.white,
+        ),
+        subtitle1: TextStyle(
+          fontSize: FontSize.s12,
+          fontWeight: FontWeightManager.regular,
+          color: AppColors.primaryPurple,
+        ),
+        subtitle2: TextStyle(
+          fontSize: FontSize.s12,
+          fontWeight: FontWeightManager.regular,
+          color: AppColors.white,
+        ),
+      ),
     );
