@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../presentation/color_manager.dart';
+import '../home_viewmodel.dart';
 import 'overflow_text_widget.dart';
 
 class AddressRow extends StatelessWidget {
@@ -27,6 +29,15 @@ class AddressRow extends StatelessWidget {
               style: style,
             ),
           ),
+          Consumer<HomeVM>(
+              builder: (_, viewModel, __) => GestureDetector(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.favorite_outline,
+                      size: 24,
+                      color: AppColors.primaryPurple,
+                    ),
+                  ))
         ],
       );
 }

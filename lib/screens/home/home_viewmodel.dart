@@ -11,6 +11,7 @@ class HomeVM extends ChangeNotifier {
   HomeVM({required EventRepo eventRepo}) : _repo = eventRepo;
 
   List<DomainEvent> events = [];
+  bool isFavorite = false;
 
   Future<void> init() async {
     events = await _repo.getAllEvents();
