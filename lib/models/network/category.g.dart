@@ -6,28 +6,28 @@ part of 'category.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
-      id: json['id'] as int?,
-      attributes: json['attributes'] == null
-          ? null
-          : CategoryAttributes.fromJson(
-              json['attributes'] as Map<String, dynamic>),
+NetworkCategory _$NetworkCategoryFromJson(Map<String, dynamic> json) =>
+    NetworkCategory(
+      json['id'] as int? ?? 0,
+      CategoryAttributes.fromJson(json['attributes'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
+Map<String, dynamic> _$NetworkCategoryToJson(NetworkCategory instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'attributes': instance.attributes,
     };
 
 CategoryAttributes _$CategoryAttributesFromJson(Map<String, dynamic> json) =>
     CategoryAttributes(
-      name: json['name'] as String?,
-      createdAt: json['createdAt'] as String?,
-      updatedAt: json['updatedAt'] as String?,
-      publishedAt: json['publishedAt'] as String?,
-      events: json['events'] == null
-          ? null
-          : NetworkEvent.fromJson(json['events'] as Map<String, dynamic>),
+      json['name'] as String? ?? '',
+      json['createdAt'] as String? ?? '',
+      json['updatedAt'] as String? ?? '',
+      json['publishedAt'] as String? ?? '',
+      (json['events']['data'] as List<dynamic>?)
+              ?.map((e) => NetworkEvent.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$CategoryAttributesToJson(CategoryAttributes instance) =>

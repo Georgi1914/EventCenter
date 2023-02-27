@@ -5,32 +5,34 @@ import 'event.dart';
 part 'category.g.dart';
 
 @JsonSerializable()
-class Category {
-  int? id;
-  CategoryAttributes? attributes;
+class NetworkCategory {
+  @JsonKey(defaultValue: 0)
+  int id;
+  CategoryAttributes attributes;
 
-  Category({this.id, this.attributes});
+  NetworkCategory(this.id, this.attributes);
 
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+  factory NetworkCategory.fromJson(Map<String, dynamic> json) =>
+      _$NetworkCategoryFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CategoryToJson(this);
+  Map<String, dynamic> toJson() => _$NetworkCategoryToJson(this);
 }
 
 @JsonSerializable()
 class CategoryAttributes {
-  String? name;
-  String? createdAt;
-  String? updatedAt;
-  String? publishedAt;
-  NetworkEvent? events;
+  @JsonKey(defaultValue: '')
+  String name;
+  @JsonKey(defaultValue: '')
+  String createdAt;
+  @JsonKey(defaultValue: '')
+  String updatedAt;
+  @JsonKey(defaultValue: '')
+  String publishedAt;
+  @JsonKey(defaultValue: [])
+  List<NetworkEvent> events;
 
   CategoryAttributes(
-      {this.name,
-      this.createdAt,
-      this.updatedAt,
-      this.publishedAt,
-      this.events});
+      this.name, this.createdAt, this.updatedAt, this.publishedAt, this.events);
 
   factory CategoryAttributes.fromJson(Map<String, dynamic> json) =>
       _$CategoryAttributesFromJson(json);

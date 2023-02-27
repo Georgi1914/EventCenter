@@ -5,8 +5,8 @@ class Requests {
 
   Requests({required Dio dio}) : _dio = dio;
 
-  Future getRequest(String url) async {
-    final Response response = await _dio.get(url);
+  Future getRequest(String url, {Map<String, String>? queryParams}) async {
+    final Response response = await _dio.get(url, queryParameters: queryParams);
     return response.data;
   }
 

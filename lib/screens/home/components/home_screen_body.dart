@@ -20,27 +20,19 @@ class HomeScreenBody extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  final List<String> categories = [
-                    'category1',
-                    'category2',
-                    'category3',
-                    'category4',
-                    'category5',
-                  ];
-                  int selectedFilterIndex = 0;
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ChoiceChip(
-                      label: Text(
-                        categories[index],
-                      ),
-                      selected: selectedFilterIndex == index,
-                      onSelected: (bool selected) {},
+                itemCount: viewModel.categoriesLength,
+                itemBuilder: (_, int index) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ChoiceChip(
+                    label: Text(
+                      viewModel.getCategoryName(index),
                     ),
-                  );
-                },
+                    selected: viewModel.isSelected(index),
+                    onSelected: (bool selected) {
+                      viewModel.setSelected(index);
+                    },
+                  ),
+                ),
               ),
             ),
             Expanded(
