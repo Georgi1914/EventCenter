@@ -28,7 +28,7 @@ class LoginButton extends StatelessWidget {
             disabledBackgroundColor: AppColors.neutralsGray,
           ),
           onPressed: () async => await viewModel.signIn()
-              ? Navigator.pushNamed(context, RouteManager.homeScreen)
+              ? Navigator.pushReplacementNamed(context, RouteManager.homeScreen)
               : ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
