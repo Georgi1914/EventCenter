@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import '../data/api.dart';
+import '../data/repositories/category/category.dart';
+import '../data/repositories/category/category_repository_mappers.dart';
+import '../data/repositories/events/event.dart';
+import '../data/repositories/events/event_repository_mappers.dart';
 import '../data/requests.dart';
 import '../data/services/auth_service.dart';
 import '../global_variables.dart';
@@ -13,15 +17,19 @@ final getIt = GetIt.instance;
 
 void setup() {
   getIt
-    ..registerFactory(HomeVM.new)
+    ..registerFactory(() => HomeVM(eventRepo: getIt(), categoryRepo: getIt()))
     ..registerLazySingleton(
-      () => Dio(BaseOptions()),
+      () => Dio(BaseOptions(baseUrl: baseURL)),
     )
-    ..registerLazySingleton<Requests>(() => Requests(dio: getIt<Dio>()))
-    ..registerLazySingleton(() => Api(getIt<Requests>()))
+    ..registerLazySingleton<Requests>(() => Requests(dio: getIt()))
+    ..registerLazySingleton(() => Api(requests: getIt()))
+    ..registerLazySingleton(() => EventRepo(api: getIt(), mappers: getIt()))
+    ..registerLazySingleton(() => CategoryRepo(api: getIt(), mappers: getIt()))
+    ..registerLazySingleton(EventRepoMappers.new)
+    ..registerLazySingleton(CategoryRepoMappers.new)
     ..registerLazySingleton(
       () => AuthService(
-        requests: Requests(dio: Dio(BaseOptions(baseUrl: baseAuthUrl))),
+        requests: Requests(dio: Dio(BaseOptions(baseUrl: baseURL))),
       ),
     )
     ..registerFactory(() => RegisterViewModel(authServices: getIt()))

@@ -12,17 +12,17 @@ class NoAccountText extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(96, 0, 96, 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Expanded(
+          children: const [
+            Expanded(
               child: Divider(),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 AppStrings.accountNotCreated,
               ),
             ),
-            const Expanded(
+            Expanded(
               child: Divider(),
             ),
           ],
