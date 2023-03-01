@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../presentation/color_manager.dart';
+import '../../custom_widgets/overflow_text_widget.dart';
 import '../home_viewmodel.dart';
-import 'overflow_text_widget.dart';
 
 class AddressRow extends StatelessWidget {
   const AddressRow({

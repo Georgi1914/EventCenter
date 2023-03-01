@@ -9,6 +9,7 @@ import '../data/repositories/events/event_repository_mappers.dart';
 import '../data/requests.dart';
 import '../data/services/auth_service.dart';
 import '../global_variables.dart';
+import '../screens/description_screen/description_view_model.dart';
 import '../screens/home/home_viewmodel.dart';
 import '../screens/login_screen/login_view_model.dart';
 import '../screens/register_screen/register_view_model.dart';
@@ -33,5 +34,6 @@ void setup() {
       ),
     )
     ..registerFactory(() => RegisterViewModel(authServices: getIt()))
-    ..registerFactory(() => LoginViewModel(authService: getIt()));
+    ..registerFactory(() => LoginViewModel(authService: getIt()))
+    ..registerFactory(DescriptionVM.new);
 }
