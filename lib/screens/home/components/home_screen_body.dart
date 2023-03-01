@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../presentation/color_manager.dart';
 import '../home_viewmodel.dart';
 import 'event_card.dart';
+import 'home_screen_filter.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({
@@ -22,22 +22,8 @@ class HomeScreenBody extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: viewModel.categoriesLength,
-                itemBuilder: (_, int index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ChoiceChip(
-                    selectedColor: AppColors.primaryPurple,
-                    label: Text(
-                      viewModel.getCategoryName(index),
-                    ),
-                    labelStyle: TextStyle(
-                        color: viewModel.isSelected(index)
-                            ? AppColors.white
-                            : AppColors.primaryPurple),
-                    selected: viewModel.isSelected(index),
-                    onSelected: (bool selected) {
-                      viewModel.setSelected(index);
-                    },
-                  ),
+                itemBuilder: (_, int index) => HomeScreenFilter(
+                  index: index,
                 ),
               ),
             ),
