@@ -14,4 +14,5 @@ class AppStrings {
   static const String signIn = 'Sign in';
   static const String invalidCredentials = 'Invalid credentials!';
   static const String accountNotCreated = "You don't have an account?";
+  static const String continueAsGuest = 'Continue as Guest';
 }

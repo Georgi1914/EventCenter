@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/auth/local_storage.dart';
+import '../../../app/get_it.dart';
+import '../../../app/route_manager.dart';
 import '../../../presentation/color_manager.dart';
 
 class HomeNavBar extends StatelessWidget {
@@ -9,6 +12,11 @@ class HomeNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BottomNavigationBar(
+        onTap: (index) async {
+          await getIt<LocalStorage>().removeToken();
+          await Navigator.pushNamedAndRemoveUntil(context,
+              RouteManager.logInScreen, (Route<dynamic> route) => false);
+        },
         unselectedLabelStyle: const TextStyle(color: AppColors.white),
         unselectedItemColor: AppColors.white,
         backgroundColor: AppColors.backgroundColor,
