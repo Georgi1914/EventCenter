@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-import '../../../global_variables.dart';
 import '../../../models/ui/event.dart';
 import 'description_text_forms.dart';
 
@@ -22,7 +19,7 @@ class DescriptionBody extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Image.network(
-                imageUrls[Random().nextInt(imageUrls.length)],
+                event.image.url,
                 fit: BoxFit.fitWidth,
               ),
             ),

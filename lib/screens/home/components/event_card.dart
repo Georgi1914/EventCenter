@@ -45,12 +45,22 @@ class EventCard extends StatelessWidget {
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    viewModel.generatePicture(),
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
+                  child: viewModel.getEventImage(index).isNotEmpty
+                      ? Image.network(
+                          viewModel.getEventImage(index),
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          width: double.maxFinite,
+                          color: AppColors.red,
+                          child: const Center(
+                            child: Text(
+                              'Unavailable image',
+                            ),
+                          ),
+                        ),
                 ),
               ),
               OverflowTextWidget(

@@ -31,6 +31,8 @@ class HomeVM extends ChangeNotifier {
 
   String getEventAddress(int index) => events[index].address;
 
+  String getEventImage(int index) => events[index].image.url;
+
   String getEventName(int index) => events[index].name;
 
   DomainEvent getEvent(int index) => events[index];

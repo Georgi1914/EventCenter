@@ -22,6 +22,9 @@ Attributes _$AttributesFromJson(Map<String, dynamic> json) => Attributes(
       json['date'] as String? ?? '',
       json['description'] as String? ?? '',
       json['address'] as String? ?? '',
+      json['mainPicture'] == null
+          ? null
+          : NetworkImage.fromJson(json['mainPicture'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AttributesToJson(Attributes instance) =>
@@ -30,4 +33,5 @@ Map<String, dynamic> _$AttributesToJson(Attributes instance) =>
       'date': instance.date,
       'description': instance.description,
       'address': instance.address,
+      'mainPicture': instance.mainPicture,
     };
