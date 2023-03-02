@@ -35,12 +35,8 @@ class LoginButton extends StatelessWidget {
                     RouteManager.homeScreen,
                   )
                 : ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        viewModel.exceptionText.isEmpty
-                            ? AppStrings.invalidCredentials
-                            : viewModel.exceptionText,
-                      ),
+                    const SnackBar(
+                      content: Text(AppStrings.invalidCredentials),
                     ),
                   );
           },

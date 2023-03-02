@@ -1,5 +1,10 @@
 class UserDataModel {
-  UserDataModel(this.email, this.firstName, this.lastName, this.password);
+  UserDataModel(
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.password,
+  );
 
   final String email;
   final String password;

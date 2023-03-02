@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
 
-import '../../data/services/auth_service.dart';
+import '../../data/repositories/user/user.dart';
 import '../../presentation/string_manager.dart';
 
 class LoginViewModel extends ChangeNotifier {
-  final AuthService _authService;
+  final UserRepo _repo;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  LoginViewModel({required AuthService authService})
-      : _authService = authService;
-
-  String get exceptionText => _authService.exceptionMessage;
+  LoginViewModel({required UserRepo repo}) : _repo = repo;
 
   Future<bool> signIn() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    _authService.exceptionMessage = '';
-    final user = await _authService.signIn(
+    final hasSignedIn = await _repo.signIn(
         emailController.value.text, passwordController.value.text);
     _checkEmptyFields();
-    return user;
+    return hasSignedIn;
   }
 
-  void _checkEmptyFields() {
+  String? _checkEmptyFields() {
     if (emailController.value.text.isEmpty ||
         passwordController.value.text.isEmpty) {
-      _authService.exceptionMessage = AppStrings.emptyFieldsException;
+      return AppStrings.emptyFieldsException;
     }
+    return null;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    _repo.signOut();
   }
 }

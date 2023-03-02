@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../models/user_model_data.dart';
+import '../../models/ui/user_model_data.dart';
 import '../requests.dart';
 
 class AuthService {
@@ -10,18 +10,20 @@ class AuthService {
 
   String exceptionMessage = '';
 
-  Future<bool> signIn(String email, String password) async {
+  Future<String?> signIn(String email, String password) async {
     try {
       final response = await _requests.postRequest(
-        '/auth/local',
+        '/api/auth/local',
         jsonEncode({'identifier': email, 'password': password}),
       );
-      return response.statusCode == 200;
+      if (response.statusCode == 200) {
+        return response.data['jwt'];
+      }
     } on Exception catch (e) {
       exceptionMessage = e.toString();
       print(exceptionMessage);
     }
-    return false;
+    return null;
   }
 
   Future<void> signUp(UserDataModel user) async {
@@ -40,15 +42,17 @@ class AuthService {
       if (response.statusCode != 200) {
         exceptionMessage = response.data.toString();
       } else {
-        await _requests.postRequest(
-          '/auth/email-confirmation',
-          jsonEncode({'email': user.email}),
-        );
+        await _confirmEmail(user.email);
       }
     } on Exception catch (e) {
       exceptionMessage = e.toString();
     }
   }
+
+  Future<void> _confirmEmail(String email) async => await _requests.postRequest(
+        '/auth/email-confirmation',
+        jsonEncode({'email': email}),
+      );
 
 // Future<void> signOut() async => await auth.signOut();
 }
