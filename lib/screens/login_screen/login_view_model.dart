@@ -11,6 +11,7 @@ class LoginViewModel extends ChangeNotifier {
   LoginViewModel({required UserRepo repo}) : _repo = repo;
 
   Future<bool> signIn() async {
+    await _repo.signOut();
     FocusManager.instance.primaryFocus?.unfocus();
     final hasSignedIn = await _repo.signIn(
         emailController.value.text, passwordController.value.text);
@@ -31,6 +32,5 @@ class LoginViewModel extends ChangeNotifier {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
-    _repo.signOut();
   }
 }

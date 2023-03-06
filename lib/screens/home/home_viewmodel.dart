@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../data/repositories/category/category.dart';
 import '../../data/repositories/events/event.dart';
-import '../../global_variables.dart';
 import '../../models/ui/category.dart';
 import '../../models/ui/event.dart';
 
@@ -50,10 +47,5 @@ class HomeVM extends ChangeNotifier {
     selectedFilter = getCategoryName(index);
     events = categories[index].events;
     notifyListeners();
-  }
-
-  String generatePicture() {
-    final random = Random();
-    return imageUrls[random.nextInt(imageUrls.length)];
   }
 }

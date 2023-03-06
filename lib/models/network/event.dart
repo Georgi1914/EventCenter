@@ -10,7 +10,7 @@ part 'event.g.dart';
 class NetworkEvent {
   @JsonKey(defaultValue: 0)
   final int id;
-  final Attributes attributes;
+  final Attributes? attributes;
 
   NetworkEvent(
     this.id,
@@ -19,11 +19,11 @@ class NetworkEvent {
 
   DomainEvent toEvent() => DomainEvent(
         id,
-        attributes.name,
-        DateTime.tryParse(attributes.date) ?? DateTime.utc(0),
-        attributes.description,
-        attributes.address,
-        attributes.mainPicture?.toImage() ?? DomainImage(-1, ''),
+        attributes?.name ?? '',
+        DateTime.tryParse(attributes?.date ?? '') ?? DateTime.utc(0),
+        attributes?.description ?? '',
+        attributes?.address ?? '',
+        attributes?.mainPicture?.toImage() ?? DomainImage(-1, ''),
       );
 
   factory NetworkEvent.fromJson(Map<String, dynamic> json) =>

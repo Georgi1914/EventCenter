@@ -8,7 +8,7 @@ class AuthInterceptor extends Interceptor {
   AuthInterceptor({required LocalStorage storage}) : _storage = storage;
 
   @override
-  void onRequest(
+  Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     final String? token = await _storage.getToken();
     if (token != null) {

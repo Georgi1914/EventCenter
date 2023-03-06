@@ -12,8 +12,10 @@ import '../data/requests.dart';
 import '../data/services/auth_service.dart';
 import '../global_variables.dart';
 import '../screens/description_screen/description_view_model.dart';
+import '../screens/favorite_screen/favorite_view_model.dart';
 import '../screens/home/home_viewmodel.dart';
 import '../screens/login_screen/login_view_model.dart';
+import '../screens/navigation_bar/nav_bar_view_model.dart';
 import '../screens/register_screen/register_view_model.dart';
 import 'auth/auth_interceptor.dart';
 import 'auth/local_storage.dart';
@@ -40,13 +42,15 @@ void setup() {
     ..registerLazySingleton(CategoryRepoMappers.new)
     ..registerLazySingleton(
       () => AuthService(
-        requests: Requests(dio: getIt()),
+        requests: getIt(),
       ),
     )
     ..registerFactory(() => RegisterViewModel(authServices: getIt()))
     ..registerLazySingleton(
       () => UserRepo(service: getIt(), storage: getIt()),
     )
+    ..registerFactory(() => FavoriteVM(userRepo: getIt(), eventRepo: getIt()))
     ..registerFactory(() => LoginViewModel(repo: getIt()))
+    ..registerFactory(NavBarVM.new)
     ..registerFactory(DescriptionVM.new);
 }

@@ -30,4 +30,17 @@ class UserRepo implements UserRepositoryInterface {
   Future<void> signOut() async {
     await _storage.removeToken();
   }
+
+  @override
+  Future<List<int>> getFavoriteIds() async {
+    final me = await _service.getMe();
+    final List<int> ids = [];
+    final favorites = me?.favoriteEvents;
+    if (favorites != null) {
+      for (final element in favorites) {
+        ids.add(element.id);
+      }
+    }
+    return ids;
+  }
 }

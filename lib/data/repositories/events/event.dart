@@ -19,4 +19,16 @@ class EventRepo implements EventRepositoryInterface {
         _mappers.mapNetworkEventsToUi(networkEvents);
     return events;
   }
+
+  @override
+  Future<List<DomainEvent>> getEventsFromIds(List<int> ids) async {
+    final List<NetworkEvent> networkEvents = [];
+    for (final element in ids) {
+      final event = await _api.getEventById(element);
+      if (event != null) {
+        networkEvents.add(event);
+      }
+    }
+    return _mappers.mapNetworkEventsToUi(networkEvents);
+  }
 }
