@@ -21,7 +21,7 @@ class RegisterOrGuestRow extends StatelessWidget {
           FloatingActionButton(
             heroTag: 'homeBtn',
             onPressed: () =>
-                Navigator.pushNamed(context, RouteManager.homeScreen),
+                Navigator.pushNamed(context, RouteManager.navigation),
             child: const Text(AppStrings.continueAsGuest),
           ),
         ],

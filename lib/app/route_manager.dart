@@ -13,11 +13,11 @@ import 'get_it.dart';
 import 'viewmodel_builder.dart';
 
 class RouteManager {
-  static const String homeScreen = 'home-screen';
+  // static const String homeScreen = 'home-screen';
   static const String registerScreen = 'register-screen';
   static const String logInScreen = 'login-screen';
   static const String descriptionScreen = 'description-screen';
-  static const String favoritesScreen = 'favorites-screen';
+  // static const String favoritesScreen = 'favorites-screen';
   static const String navigation = 'navigation';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
