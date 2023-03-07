@@ -11,6 +11,7 @@ import '../data/repositories/user/user.dart';
 import '../data/requests.dart';
 import '../data/services/auth_service.dart';
 import '../global_variables.dart';
+import '../screens/create_event_screen/create_event_view_model.dart';
 import '../screens/description_screen/description_view_model.dart';
 import '../screens/favorite_screen/favorite_view_model.dart';
 import '../screens/home/home_viewmodel.dart';
@@ -52,5 +53,6 @@ void setup() {
     ..registerFactory(() => FavoriteVM(userRepo: getIt(), eventRepo: getIt()))
     ..registerFactory(() => LoginViewModel(repo: getIt()))
     ..registerFactory(NavBarVM.new)
+    ..registerFactory(CreateEventVM.new)
     ..registerFactory(DescriptionVM.new);
 }

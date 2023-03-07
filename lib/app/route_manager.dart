@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../models/ui/event.dart';
+import '../screens/create_event_screen/create_event_view.dart';
+import '../screens/create_event_screen/create_event_view_model.dart';
 import '../screens/description_screen/description_view.dart';
 import '../screens/description_screen/description_view_model.dart';
 import '../screens/login_screen/login_view.dart';
@@ -19,6 +21,7 @@ class RouteManager {
   static const String descriptionScreen = 'description-screen';
   // static const String favoritesScreen = 'favorites-screen';
   static const String navigation = 'navigation';
+  static const String createEvent = 'create-event-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -67,6 +70,13 @@ class RouteManager {
           builder: (BuildContext context) => ViewModelBuilder<NavBarVM>(
             builder: (context, viewModel) => const NavBarView(),
             viewModelBuilder: getIt<NavBarVM>,
+          ),
+        );
+      case createEvent:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => ViewModelBuilder<CreateEventVM>(
+            builder: (context, viewModel) => const CreateEventScreen(),
+            viewModelBuilder: getIt<CreateEventVM>,
           ),
         );
       default:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app/route_manager.dart';
+import '../../../presentation/color_manager.dart';
 import '../home_viewmodel.dart';
 import 'event_card.dart';
 import 'home_screen_filter.dart';
@@ -18,6 +20,31 @@ class HomeScreenBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
+            Row(
+              children: [
+                const Text('Nqkakvo ime eno de tri'),
+                const Spacer(),
+                InkWell(
+                  splashColor: Colors.transparent,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RouteManager.createEvent),
+                  child: Container(
+                    width: 50.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          color: AppColors.primaryPurple, width: 2.0),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.primaryPurple,
+                      size: 30.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,

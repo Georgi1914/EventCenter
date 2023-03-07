@@ -9,11 +9,6 @@ ThemeData getApplicationTheme() => ThemeData(
       cardColor: const Color.fromARGB(100, 31, 34, 42),
       fontFamily: FontFamily.urbanist,
       textTheme: const TextTheme(
-        headline2: TextStyle(
-          fontSize: FontSize.s16,
-          fontWeight: FontWeightManager.bold,
-          color: AppColors.white,
-        ),
         subtitle1: TextStyle(
           fontSize: FontSize.s12,
           fontWeight: FontWeightManager.regular,
@@ -29,9 +24,19 @@ ThemeData getApplicationTheme() => ThemeData(
           fontWeight: FontWeightManager.bold,
           color: AppColors.white,
         ),
+        headline2: TextStyle(
+          fontSize: FontSize.s16,
+          fontWeight: FontWeightManager.bold,
+          color: AppColors.white,
+        ),
         headline3: TextStyle(
           fontSize: FontSize.s18,
           fontWeight: FontWeightManager.bold,
+          color: AppColors.white,
+        ),
+        headline4: TextStyle(
+          fontSize: FontSize.s14,
+          fontWeight: FontWeightManager.regular,
           color: AppColors.white,
         ),
       ),
