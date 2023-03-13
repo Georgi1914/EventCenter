@@ -1,11 +1,11 @@
 class EventType {
   final String name;
-  final String date;
+  final DateTime date;
   final String description;
   final String address;
   final int categoryId;
   final int userId;
-  final List<int> binaryPicture;
+  final Map<String, dynamic> mainPicture;
 
   EventType(
     this.name,
@@ -14,6 +14,16 @@ class EventType {
     this.address,
     this.categoryId,
     this.userId,
-    this.binaryPicture,
+    this.mainPicture,
   );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'name': name,
+        'date': date.toString(),
+        'description': description,
+        'address': address,
+        'categories': categoryId,
+        'creator': userId,
+        'mainPicture': mainPicture
+      };
 }

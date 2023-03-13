@@ -7,11 +7,11 @@ part of 'image.dart';
 // **************************************************************************
 
 NetworkImage _$NetworkImageFromJson(Map<String, dynamic> json) => NetworkImage(
-      id: json['data']['id'] as int? ?? 0,
-      attributes: json['data']['attributes'] == null
+      id: json['id'] as int? ?? 0,
+      attributes: json['attributes'] == null
           ? null
           : ImageAttributes.fromJson(
-              json['data']['attributes'] as Map<String, dynamic>),
+              json['attributes'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$NetworkImageToJson(NetworkImage instance) =>

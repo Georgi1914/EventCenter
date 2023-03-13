@@ -1,5 +1,6 @@
 import '../../../models/network/event.dart';
 import '../../../models/ui/event.dart';
+import '../../../models/ui/event_type.dart';
 import '../../api.dart';
 import 'event_interface.dart';
 import 'event_repository_mappers.dart';
@@ -30,5 +31,10 @@ class EventRepo implements EventRepositoryInterface {
       }
     }
     return _mappers.mapNetworkEventsToUi(networkEvents);
+  }
+
+  Future<void> createEvent(EventType event) async {
+    final response = await _api.createEvent(event);
+    print(response);
   }
 }

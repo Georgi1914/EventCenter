@@ -43,4 +43,9 @@ class UserRepo implements UserRepositoryInterface {
     }
     return ids;
   }
+
+  Future<int> getMeId() async {
+    final me = await _service.getMe();
+    return me?.id ?? 0;
+  }
 }

@@ -53,6 +53,8 @@ void setup() {
     ..registerFactory(() => FavoriteVM(userRepo: getIt(), eventRepo: getIt()))
     ..registerFactory(() => LoginViewModel(repo: getIt()))
     ..registerFactory(NavBarVM.new)
-    ..registerFactory(CreateEventVM.new)
+    ..registerFactory(
+      () => CreateEventVM(eventRepo: getIt(), userRepo: getIt()),
+    )
     ..registerFactory(DescriptionVM.new);
 }

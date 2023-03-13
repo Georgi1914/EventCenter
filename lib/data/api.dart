@@ -1,7 +1,10 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
+
 import '../models/network/category.dart';
 import '../models/network/event.dart';
+import '../models/ui/event_type.dart';
 import 'requests.dart';
 
 class Api {
@@ -48,6 +51,21 @@ class Api {
     } on Exception catch (e) {
       log(e.toString());
       return [];
+    }
+  }
+
+  Future createEvent(EventType event) async {
+    try {
+      const url = '/api/events';
+      final FormData formData = FormData.fromMap(event.toJson());
+      final data = await _requests.postRequest(
+        url,
+        event.toJson(),
+      );
+      return data.data;
+    } on Exception catch (e) {
+      log(e.toString());
+      rethrow;
     }
   }
 }

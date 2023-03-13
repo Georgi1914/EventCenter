@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: RouteManager.navigation,
+        initialRoute: RouteManager.logInScreen,
         onGenerateRoute: RouteManager.generateRoute,
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
