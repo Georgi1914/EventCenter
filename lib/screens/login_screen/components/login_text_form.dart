@@ -7,9 +7,11 @@ import '../../../presentation/string_manager.dart';
 class LoginTextForm extends StatelessWidget {
   final TextEditingController? textController;
   final String hintText;
+  final IconData icon;
   const LoginTextForm({
     required this.textController,
     required this.hintText,
+    required this.icon,
     super.key,
   });
 
@@ -25,6 +27,13 @@ class LoginTextForm extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 4),
           child: Row(
             children: [
+              Icon(
+                icon,
+                color: AppColors.white,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
               Text(
                 hintText,
                 style: Theme.of(context).textTheme.headline5,
@@ -52,6 +61,8 @@ class LoginTextForm extends StatelessWidget {
                 isPasswordField || hintText == AppStrings.confirmPassword,
             style: Theme.of(context).textTheme.headline4,
             decoration: InputDecoration(
+              fillColor: AppColors.cardColor,
+              filled: true,
               contentPadding: const EdgeInsets.all(12),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
