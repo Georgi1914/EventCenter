@@ -7,4 +7,5 @@ class AppColors {
   static const Color primaryPurple = Color(0xFF584CF4);
   static const Color backgroundColor = Color(0xFF181A20);
   static const Color cardColor = Color(0xFF1F222A);
+  static const Color grayTextColor = Color(0xFF9E9E9E);
 }

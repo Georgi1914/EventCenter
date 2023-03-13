@@ -59,15 +59,22 @@ class LoginTextForm extends StatelessWidget {
             controller: textController,
             obscureText:
                 isPasswordField || hintText == AppStrings.confirmPassword,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headline6,
             decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: AppColors.primaryPurple,
+                ),
+                borderRadius: BorderRadius.circular(16),
+              ),
               fillColor: AppColors.cardColor,
               filled: true,
-              contentPadding: const EdgeInsets.all(12),
+              contentPadding: const EdgeInsets.all(20),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(16),
               ),
               hintText: hintText,
+              hintStyle: Theme.of(context).textTheme.headline6,
               hintMaxLines: 2,
               errorMaxLines: 2,
             ),
