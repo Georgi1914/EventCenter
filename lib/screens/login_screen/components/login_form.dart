@@ -21,10 +21,12 @@ class LoginForm extends StatelessWidget {
           LoginTextForm(
             textController: viewModel.emailController,
             hintText: AppStrings.email,
+            icon: Icons.email_outlined,
           ),
           LoginTextForm(
             textController: viewModel.passwordController,
             hintText: AppStrings.password,
+            icon: Icons.lock_outline,
           ),
         ],
       ),

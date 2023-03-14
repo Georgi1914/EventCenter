@@ -39,6 +39,16 @@ ThemeData getApplicationTheme() => ThemeData(
           fontWeight: FontWeightManager.regular,
           color: AppColors.white,
         ),
+        headline5: TextStyle(
+          fontSize: FontSize.s16,
+          fontWeight: FontWeightManager.regular,
+          color: AppColors.white,
+        ),
+        headline6: TextStyle(
+          fontSize: FontSize.s16,
+          fontWeight: FontWeightManager.semiBold,
+          color: AppColors.grayTextColor,
+        ),
       ),
       chipTheme: const ChipThemeData(
         secondarySelectedColor: Colors.white,

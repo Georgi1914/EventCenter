@@ -20,4 +20,6 @@ class AppStrings {
   static const String eventAddress = 'Street address';
   static const String dateAndTime = 'Date & time';
   static const String description = 'Description';
+  static const String loginAcc = 'Login to Your Account';
+  static const String or = 'or';
 }
