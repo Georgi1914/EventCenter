@@ -26,7 +26,10 @@ final getIt = GetIt.instance;
 
 void setup() {
   getIt
-    ..registerFactory(() => HomeVM(eventRepo: getIt(), categoryRepo: getIt()))
+    ..registerFactory(
+      () =>
+          HomeVM(eventRepo: getIt(), categoryRepo: getIt(), userRepo: getIt()),
+    )
     ..registerLazySingleton(
       () => Dio(BaseOptions(baseUrl: baseURL))
         ..interceptors.add(AuthInterceptor(storage: getIt())),

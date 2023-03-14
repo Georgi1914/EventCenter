@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../ui/user_model_data.dart';
+
 part 'user_fav.g.dart';
 
 @JsonSerializable()
@@ -29,6 +31,9 @@ class UserFav {
       this.firstName,
       this.lastName,
       required this.favoriteEvents});
+
+  UserDataModel toUser() =>
+      UserDataModel(email ?? '', firstName ?? '', lastName ?? '', '');
 
   factory UserFav.fromJson(Map<String, dynamic> json) =>
       _$UserFavFromJson(json);

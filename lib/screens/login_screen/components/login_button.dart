@@ -32,6 +32,7 @@ class LoginButton extends StatelessWidget {
                 ? Navigator.pushReplacementNamed(
                     context,
                     RouteManager.navigation,
+                    arguments: true,
                   )
                 : ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

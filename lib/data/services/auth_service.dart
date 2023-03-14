@@ -37,7 +37,6 @@ class AuthService {
           'firstName': user.firstName,
           'lastName': user.lastName
         }),
-        //todo create model
       );
       if (response.statusCode != 200) {
         exceptionMessage = response.data.toString();
@@ -53,7 +52,9 @@ class AuthService {
       final response =
           await _requests.getRequest('/api/users/me', queryParams: queryParams);
       return UserFav.fromJson(response);
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      print(e.toString());
+    }
     return null;
   }
 }
