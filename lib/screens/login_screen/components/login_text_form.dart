@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../presentation/color_manager.dart';
-import '../../../presentation/font_manager.dart';
 import '../../../presentation/string_manager.dart';
 
 class LoginTextForm extends StatelessWidget {
@@ -38,14 +37,9 @@ class LoginTextForm extends StatelessWidget {
                 hintText,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              const Text(
+              Text(
                 AppStrings.requiredSign,
-                style: TextStyle(
-                  fontFamily: FontFamily.urbanist,
-                  fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s14,
-                  color: AppColors.red,
-                ),
+                style: Theme.of(context).textTheme.bodyText2,
               )
             ],
           ),

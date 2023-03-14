@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation/color_manager.dart';
 import 'components/register_body.dart';
 
 class RegisterView extends StatelessWidget {
