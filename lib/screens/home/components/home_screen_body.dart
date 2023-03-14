@@ -54,6 +54,9 @@ class HomeScreenBody extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 8,
+            ),
             Expanded(
               flex: 20,
               child: GridView.builder(
