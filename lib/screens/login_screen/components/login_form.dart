@@ -13,21 +13,20 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<LoginViewModel>();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          LoginTextForm(
-            textController: viewModel.emailController,
-            hintText: AppStrings.email,
-          ),
-          LoginTextForm(
-            textController: viewModel.passwordController,
-            hintText: AppStrings.password,
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LoginTextForm(
+          textController: viewModel.emailController,
+          hintText: AppStrings.email,
+          icon: Icons.email_outlined,
+        ),
+        LoginTextForm(
+          textController: viewModel.passwordController,
+          hintText: AppStrings.password,
+          icon: Icons.lock_outline,
+        ),
+      ],
     );
   }
 }

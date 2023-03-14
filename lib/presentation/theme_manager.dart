@@ -9,11 +9,6 @@ ThemeData getApplicationTheme() => ThemeData(
       cardColor: const Color.fromARGB(100, 31, 34, 42),
       fontFamily: FontFamily.urbanist,
       textTheme: const TextTheme(
-        headline2: TextStyle(
-          fontSize: FontSize.s16,
-          fontWeight: FontWeightManager.bold,
-          color: AppColors.white,
-        ),
         subtitle1: TextStyle(
           fontSize: FontSize.s12,
           fontWeight: FontWeightManager.regular,
@@ -24,8 +19,18 @@ ThemeData getApplicationTheme() => ThemeData(
           fontWeight: FontWeightManager.regular,
           color: AppColors.white,
         ),
+        bodyText2:  TextStyle(
+        fontWeight: FontWeightManager.regular,
+        fontSize: FontSize.s14,
+        color: AppColors.red,
+      ),
         headline1: TextStyle(
           fontSize: FontSize.s32,
+          fontWeight: FontWeightManager.bold,
+          color: AppColors.white,
+        ),
+        headline2: TextStyle(
+          fontSize: FontSize.s16,
           fontWeight: FontWeightManager.bold,
           color: AppColors.white,
         ),
@@ -33,6 +38,21 @@ ThemeData getApplicationTheme() => ThemeData(
           fontSize: FontSize.s18,
           fontWeight: FontWeightManager.bold,
           color: AppColors.white,
+        ),
+        headline4: TextStyle(
+          fontSize: FontSize.s14,
+          fontWeight: FontWeightManager.regular,
+          color: AppColors.white,
+        ),
+        headline5: TextStyle(
+          fontSize: FontSize.s16,
+          fontWeight: FontWeightManager.regular,
+          color: AppColors.white,
+        ),
+        headline6: TextStyle(
+          fontSize: FontSize.s16,
+          fontWeight: FontWeightManager.semiBold,
+          color: AppColors.grayTextColor,
         ),
       ),
       chipTheme: const ChipThemeData(

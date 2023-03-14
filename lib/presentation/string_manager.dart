@@ -14,4 +14,12 @@ class AppStrings {
   static const String signIn = 'Sign in';
   static const String invalidCredentials = 'Invalid credentials!';
   static const String accountNotCreated = "You don't have an account?";
+  static const String continueAsGuest = 'Continue as Guest';
+  static const String createEventTitle = 'Create event';
+  static const String eventName = 'Event name';
+  static const String eventAddress = 'Street address';
+  static const String dateAndTime = 'Date & time';
+  static const String description = 'Description';
+  static const String loginAcc = 'Login to Your Account';
+  static const String or = 'or';
 }

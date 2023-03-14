@@ -16,39 +16,34 @@ class LoginButton extends StatelessWidget {
     final viewModel = context.watch<LoginViewModel>();
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(60, 8, 60, 16),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: SizedBox(
         width: double.maxFinite,
         child: TextButton(
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(100),
             ),
-            foregroundColor: AppColors.white,
-            backgroundColor: AppColors.red,
+            backgroundColor: AppColors.primaryPurple,
             disabledBackgroundColor: AppColors.neutralsGray,
           ),
           onPressed: () async {
             await viewModel.signIn()
                 ? Navigator.pushReplacementNamed(
                     context,
-                    RouteManager.homeScreen,
+                    RouteManager.navigation,
                   )
                 : ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        viewModel.exceptionText.isEmpty
-                            ? AppStrings.invalidCredentials
-                            : viewModel.exceptionText,
-                      ),
+                    const SnackBar(
+                      content: Text(AppStrings.invalidCredentials),
                     ),
                   );
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
               AppStrings.signIn,
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
         ),

@@ -8,7 +8,9 @@ part of 'event.dart';
 
 NetworkEvent _$NetworkEventFromJson(Map<String, dynamic> json) => NetworkEvent(
       json['id'] as int? ?? 0,
-      Attributes.fromJson(json['attributes'] as Map<String, dynamic>),
+      json['attributes'] == null
+          ? null
+          : Attributes.fromJson(json['attributes'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$NetworkEventToJson(NetworkEvent instance) =>

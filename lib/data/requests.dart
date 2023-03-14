@@ -14,12 +14,13 @@ class Requests {
     String url,
     Object? body, {
     Options? option,
+    Map<String, String>? queryParams,
   }) async {
-    final Response response = await _dio.post(
-      url,
-      options: option,
-      data: body,
-    );
+    print(body);
+    final Response response = await _dio.post(url,
+        options: option, data: body, queryParameters: queryParams);
+    print(response);
+    print(4);
     return response;
   }
 }

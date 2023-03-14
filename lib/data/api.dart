@@ -1,7 +1,10 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
+
 import '../models/network/category.dart';
 import '../models/network/event.dart';
+import '../models/ui/event_type.dart';
 import 'requests.dart';
 
 class Api {
@@ -23,10 +26,24 @@ class Api {
     }
   }
 
+  Future<NetworkEvent?> getEventById(int id) async {
+    try {
+      final url = '/api/events/$id';
+      final Map<String, String> queryParams = {'populate': 'mainPicture'};
+      final data = await _requests.getRequest(url, queryParams: queryParams);
+      return NetworkEvent.fromJson(data['data']);
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
   Future<List<NetworkCategory>> getCategories() async {
     try {
       const url = '/api/categories';
-      final Map<String, String> queryParams = {'populate': 'events'};
+      final Map<String, String> queryParams = {
+        'populate[events][populate]': 'mainPicture'
+      };
       final data = await _requests.getRequest(url, queryParams: queryParams);
       return (data['data'] as List<dynamic>)
           .map((e) => NetworkCategory.fromJson(e as Map<String, dynamic>))
@@ -34,6 +51,34 @@ class Api {
     } on Exception catch (e) {
       log(e.toString());
       return [];
+    }
+  }
+
+  Future createEvent(EventType event) async {
+    try {
+      const url = '/api/events';
+      // final FormData formData = FormData.fromMap(event.toJson());
+      // print(event.toJson());
+      final data = await _requests.postRequest(
+        url,
+        event.toJson(),
+      );
+      return data.data;
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future uploadImage(FormData image) async {
+    try {
+      const url = '/api/upload';
+      final data = await _requests.postRequest(
+        url,
+        image,
+      );
+      return data;
+    } on Exception catch (e) {
+      rethrow;
     }
   }
 }

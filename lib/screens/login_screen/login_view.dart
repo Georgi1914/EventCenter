@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation/color_manager.dart';
 import 'components/login_body.dart';
 
 class LoginView extends StatelessWidget {
@@ -8,7 +9,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const Scaffold(
         body: LoginBody(),
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundColor,
         resizeToAvoidBottomInset: false,
       );
 }

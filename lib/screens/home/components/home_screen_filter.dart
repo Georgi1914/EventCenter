@@ -24,9 +24,10 @@ class HomeScreenFilter extends StatelessWidget {
           viewModel.getCategoryName(index),
         ),
         labelStyle: TextStyle(
-            color: viewModel.isSelected(index)
-                ? AppColors.white
-                : AppColors.primaryPurple),
+          color: viewModel.isSelected(index)
+              ? AppColors.white
+              : AppColors.primaryPurple,
+        ),
         selected: viewModel.isSelected(index),
         onSelected: (bool selected) {
           viewModel.setSelected(index);

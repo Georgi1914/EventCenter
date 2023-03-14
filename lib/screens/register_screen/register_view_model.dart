@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../data/services/auth_service.dart';
-import '../../models/user_model_data.dart';
+import '../../models/ui/user_model_data.dart';
 
 class RegisterViewModel extends ChangeNotifier {
   final Map<String, TextEditingController> controllers = {
@@ -24,7 +24,6 @@ class RegisterViewModel extends ChangeNotifier {
     final firstName = controllers['firstName']?.value.text ?? '';
     final lastName = controllers['lastName']?.value.text ?? '';
     if (formsState) {
-      print('zdr');
       final user = UserDataModel(email, firstName, lastName, password);
       await _authServices.signUp(user);
     }

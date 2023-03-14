@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../presentation/color_manager.dart';
 import '../../../presentation/string_manager.dart';
 import '../register_view_model.dart';
 
@@ -29,15 +30,23 @@ class RegisterTextForm extends StatelessWidget {
             controller: textController,
             obscureText:
                 isPasswordField || hintText == AppStrings.confirmPassword,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headline6,
             decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(12),
+              contentPadding: const EdgeInsets.all(20),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(16),
               ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: AppColors.primaryPurple,
+                ),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              fillColor: AppColors.cardColor,
+              filled: true,
               hintText: hintText,
+              hintStyle: Theme.of(context).textTheme.headline6,
               hintMaxLines: 2,
-              errorStyle: const TextStyle(),
               errorMaxLines: 2,
               errorText: isPasswordField && !viewModel.checkPasswordRequirements
                   ? AppStrings.passwordRequirements

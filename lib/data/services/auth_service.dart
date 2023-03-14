@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import '../../models/user_model_data.dart';
+import '../../models/network/user_fav.dart';
+import '../../models/ui/user_model_data.dart';
 import '../requests.dart';
 
 class AuthService {
@@ -10,24 +11,26 @@ class AuthService {
 
   String exceptionMessage = '';
 
-  Future<bool> signIn(String email, String password) async {
+  Future<String?> signIn(String email, String password) async {
     try {
       final response = await _requests.postRequest(
-        '/auth/local',
+        '/api/auth/local',
         jsonEncode({'identifier': email, 'password': password}),
       );
-      return response.statusCode == 200;
+      if (response.statusCode == 200) {
+        return response.data['jwt'];
+      }
     } on Exception catch (e) {
       exceptionMessage = e.toString();
-      print(exceptionMessage);
     }
-    return false;
+    return null;
   }
 
   Future<void> signUp(UserDataModel user) async {
     try {
+      print('object');
       final response = await _requests.postRequest(
-        '/auth/local/register',
+        '/api/auth/local/register',
         jsonEncode({
           'username': user.email,
           'email': user.email,
@@ -37,18 +40,26 @@ class AuthService {
         }),
         //todo create model
       );
+      print('object');
       if (response.statusCode != 200) {
         exceptionMessage = response.data.toString();
-      } else {
-        await _requests.postRequest(
-          '/auth/email-confirmation',
-          jsonEncode({'email': user.email}),
-        );
       }
     } on Exception catch (e) {
       exceptionMessage = e.toString();
     }
   }
 
-// Future<void> signOut() async => await auth.signOut();
+  Future<UserFav?> getMe() async {
+    try {
+      final Map<String, String> queryParams = {'populate': 'favoriteEvents'};
+      final response =
+          await _requests.getRequest('/api/users/me', queryParams: queryParams);
+      return UserFav.fromJson(response);
+    } on Exception catch (e) {}
+    return null;
+  }
+  // Future<void> _confirmEmail(String email) async => await _requests.getRequest(
+  //       '/api/auth/email-confirmation',
+  //       jsonEncode({'email': email}),
+  //     );
 }

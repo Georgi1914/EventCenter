@@ -14,7 +14,7 @@ class NetworkImage {
   NetworkImage({required this.id, this.attributes});
 
   factory NetworkImage.fromJson(Map<String, dynamic> json) =>
-      _$NetworkImageFromJson(json);
+      _$NetworkImageFromJson(json['data']);
 
   DomainImage toImage() => DomainImage(
         id,

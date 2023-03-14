@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../../presentation/color_manager.dart';
-import '../../../presentation/font_manager.dart';
 import '../../../presentation/string_manager.dart';
 
 class LoginTextForm extends StatelessWidget {
   final TextEditingController? textController;
   final String hintText;
+  final IconData icon;
   const LoginTextForm({
     required this.textController,
     required this.hintText,
+    required this.icon,
     super.key,
   });
 
@@ -25,18 +26,20 @@ class LoginTextForm extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 4),
           child: Row(
             children: [
+              Icon(
+                icon,
+                color: AppColors.white,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
               Text(
                 hintText,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              const Text(
+              Text(
                 AppStrings.requiredSign,
-                style: TextStyle(
-                  fontFamily: FontFamily.urbanist,
-                  fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s14,
-                  color: AppColors.red,
-                ),
+                style: Theme.of(context).textTheme.bodyText2,
               )
             ],
           ),
@@ -50,13 +53,22 @@ class LoginTextForm extends StatelessWidget {
             controller: textController,
             obscureText:
                 isPasswordField || hintText == AppStrings.confirmPassword,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headline6,
             decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(12),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: AppColors.primaryPurple,
+                ),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              fillColor: AppColors.cardColor,
+              filled: true,
+              contentPadding: const EdgeInsets.all(20),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(16),
               ),
               hintText: hintText,
+              hintStyle: Theme.of(context).textTheme.headline6,
               hintMaxLines: 2,
               errorMaxLines: 2,
             ),
