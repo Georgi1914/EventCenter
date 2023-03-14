@@ -16,13 +16,15 @@ class AuthInterceptor extends Interceptor {
         'Authorization': 'Bearer $token',
       };
     }
-    print(token);
     return handler.next(options);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print(err.toString());
-    super.onError(err, handler);
+    // print(err.response.toString());
+    // print(err.error.toString());
+    // print(err.message.toString());
+    // print(err.toString());
+    // super.onError(err, handler);
   }
 }

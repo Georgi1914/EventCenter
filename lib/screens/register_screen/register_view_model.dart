@@ -24,7 +24,6 @@ class RegisterViewModel extends ChangeNotifier {
     final firstName = controllers['firstName']?.value.text ?? '';
     final lastName = controllers['lastName']?.value.text ?? '';
     if (formsState) {
-      print('zdr');
       final user = UserDataModel(email, firstName, lastName, password);
       await _authServices.signUp(user);
     }

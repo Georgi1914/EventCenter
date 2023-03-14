@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../../../models/network/event.dart';
 import '../../../models/ui/event.dart';
 import '../../../models/ui/event_type.dart';
@@ -33,8 +35,14 @@ class EventRepo implements EventRepositoryInterface {
     return _mappers.mapNetworkEventsToUi(networkEvents);
   }
 
-  Future<void> createEvent(EventType event) async {
+  Future<void> createEvent(EventType event, FormData image) async {
+    final imageResponse = await _uploadImage(image);
+    event.mainPicture = imageResponse.data[0]['id'];
     final response = await _api.createEvent(event);
-    print(response);
+  }
+
+  Future<Response> _uploadImage(FormData image) async {
+    final response = await _api.uploadImage(image);
+    return response;
   }
 }

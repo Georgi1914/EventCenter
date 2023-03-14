@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../app/route_manager.dart';
 import '../../../presentation/string_manager.dart';
 
-class RegisterOrGuestRow extends StatelessWidget {
-  const RegisterOrGuestRow({
+class RegisterOrGuestColumn extends StatelessWidget {
+  const RegisterOrGuestColumn({
     super.key,
   });
 

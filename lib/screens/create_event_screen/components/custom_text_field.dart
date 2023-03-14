@@ -5,15 +5,18 @@ import '../../../presentation/color_manager.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.hint,
+    required this.controller,
     super.key,
   });
 
+  final TextEditingController controller;
   final String hint;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return TextField(
+      controller: controller,
       style: const TextStyle(color: AppColors.white),
       decoration: InputDecoration(
         hintText: hint,

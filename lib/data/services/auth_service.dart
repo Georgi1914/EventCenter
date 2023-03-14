@@ -22,7 +22,6 @@ class AuthService {
       }
     } on Exception catch (e) {
       exceptionMessage = e.toString();
-      print(exceptionMessage);
     }
     return null;
   }
@@ -56,9 +55,7 @@ class AuthService {
       final response =
           await _requests.getRequest('/api/users/me', queryParams: queryParams);
       return UserFav.fromJson(response);
-    } on Exception catch (e) {
-      print(e.toString());
-    }
+    } on Exception catch (e) {}
     return null;
   }
 

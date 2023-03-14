@@ -57,14 +57,27 @@ class Api {
   Future createEvent(EventType event) async {
     try {
       const url = '/api/events';
-      final FormData formData = FormData.fromMap(event.toJson());
+      // final FormData formData = FormData.fromMap(event.toJson());
+      // print(event.toJson());
       final data = await _requests.postRequest(
         url,
         event.toJson(),
       );
       return data.data;
-    } on Exception catch (e) {
+    } catch (e) {
       log(e.toString());
+    }
+  }
+
+  Future uploadImage(FormData image) async {
+    try {
+      const url = '/api/upload';
+      final data = await _requests.postRequest(
+        url,
+        image,
+      );
+      return data;
+    } on Exception catch (e) {
       rethrow;
     }
   }

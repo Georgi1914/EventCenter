@@ -64,29 +64,28 @@ class CreateEventVM extends ChangeNotifier {
       'files': await MultipartFile.fromFile(
         file.path,
         filename: file.uri.pathSegments.last,
-        contentType: MediaType('multipart', 'form-data'),
+        contentType: MediaType('image', 'jpeg'),
       )
     });
-    print(_binaryPickedImage.toString());
   }
 
   Future<void> createEvent() async {
-    int myId = await _userRepo.getMeId();
-    print(_binaryPickedImage);
-    if (_binaryPickedImage != null) {
-      final event = EventType(
-        eventNameController.value.text,
-        _selectedDateTime!,
-        eventDescriptionController.value.text,
-        eventAddressController.value.text,
-        4,
-        myId,
-        {
-          'name': '1920x1080p.jpg',
-          'url': '/uploads/1920x1080p_0b1ab7a8ee.jpg',
-        },
+    final selectedDate = _selectedDateTime;
+    final _pickedImage = _binaryPickedImage;
+    final int myId = await _userRepo.getMeId();
+    if (_pickedImage != null && selectedDate != null) {
+      final response = await _eventRepo.createEvent(
+        EventType(
+          eventNameController.value.text,
+          selectedDate,
+          eventDescriptionController.value.text,
+          eventAddressController.value.text,
+          4,
+          myId,
+          4, //todo take the id from the upload request
+        ),
+        _pickedImage,
       );
-      final response = await _eventRepo.createEvent(event);
     }
   }
 }

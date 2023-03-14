@@ -19,6 +19,7 @@ class CreateEventScreen extends StatelessWidget {
           child: Column(
             children: const [
               CustomTextField(
+                controller: ,
                 hint: AppStrings.eventName,
               ),
               CustomTextField(
