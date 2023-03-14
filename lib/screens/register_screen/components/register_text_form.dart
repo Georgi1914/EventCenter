@@ -30,7 +30,7 @@ class RegisterTextForm extends StatelessWidget {
             controller: textController,
             obscureText:
                 isPasswordField || hintText == AppStrings.confirmPassword,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headline6,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(20),
               border: OutlineInputBorder(

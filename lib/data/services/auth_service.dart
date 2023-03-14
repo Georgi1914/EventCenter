@@ -28,8 +28,9 @@ class AuthService {
 
   Future<void> signUp(UserDataModel user) async {
     try {
+      print('object');
       final response = await _requests.postRequest(
-        '/auth/local/register',
+        '/api/auth/local/register',
         jsonEncode({
           'username': user.email,
           'email': user.email,
@@ -39,10 +40,9 @@ class AuthService {
         }),
         //todo create model
       );
+      print('object');
       if (response.statusCode != 200) {
         exceptionMessage = response.data.toString();
-      } else {
-        await _confirmEmail(user.email);
       }
     } on Exception catch (e) {
       exceptionMessage = e.toString();
@@ -58,11 +58,8 @@ class AuthService {
     } on Exception catch (e) {}
     return null;
   }
-
-  Future<void> _confirmEmail(String email) async => await _requests.postRequest(
-        '/auth/email-confirmation',
-        jsonEncode({'email': email}),
-      );
-
-// Future<void> signOut() async => await auth.signOut();
+  // Future<void> _confirmEmail(String email) async => await _requests.getRequest(
+  //       '/api/auth/email-confirmation',
+  //       jsonEncode({'email': email}),
+  //     );
 }
