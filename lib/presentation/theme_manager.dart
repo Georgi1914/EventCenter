@@ -19,11 +19,16 @@ ThemeData getApplicationTheme() => ThemeData(
           fontWeight: FontWeightManager.regular,
           color: AppColors.white,
         ),
-        bodyText2:  TextStyle(
-        fontWeight: FontWeightManager.regular,
-        fontSize: FontSize.s14,
-        color: AppColors.red,
-      ),
+        bodyText2: TextStyle(
+          fontWeight: FontWeightManager.regular,
+          fontSize: FontSize.s14,
+          color: AppColors.red,
+        ),
+        bodyText1: TextStyle(
+          fontWeight: FontWeightManager.regular,
+          fontSize: FontSize.s32,
+          color: AppColors.red,
+        ),
         headline1: TextStyle(
           fontSize: FontSize.s32,
           fontWeight: FontWeightManager.bold,
