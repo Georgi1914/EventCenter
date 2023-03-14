@@ -17,7 +17,7 @@ class HomeScreenFilter extends StatelessWidget {
     final viewModel = context.watch<HomeVM>();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.only(right: 16),
       child: ChoiceChip(
         selectedColor: AppColors.primaryPurple,
         label: Text(

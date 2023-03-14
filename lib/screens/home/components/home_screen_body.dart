@@ -19,6 +19,7 @@ class HomeScreenBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -45,12 +46,14 @@ class HomeScreenBody extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: viewModel.categoriesLength,
-                itemBuilder: (_, int index) => HomeScreenFilter(
-                  index: index,
+            SingleChildScrollView(
+              padding: EdgeInsets.zero,
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(
+                  viewModel.categoriesLength,
+                  (index) => HomeScreenFilter(index: index),
                 ),
               ),
             ),
@@ -58,7 +61,6 @@ class HomeScreenBody extends StatelessWidget {
               height: 8,
             ),
             Expanded(
-              flex: 20,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
