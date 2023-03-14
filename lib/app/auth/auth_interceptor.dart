@@ -9,7 +9,9 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future<void> onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final String? token = await _storage.getToken();
     if (token != null) {
       options.headers = {
@@ -20,7 +22,5 @@ class AuthInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    print(err.message.toString());
-  }
+  void onError(DioError err, ErrorInterceptorHandler handler) {}
 }

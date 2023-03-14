@@ -35,7 +35,7 @@ class NavBarBody extends StatelessWidget {
       case PageEnum.profile:
         return ChangeNotifierProvider<ProfileVM>(
           create: (_) => getIt<ProfileVM>(),
-          child: const ProfileScreen(),
+          child: ProfileScreen(isUser: isUser),
         );
     }
   }

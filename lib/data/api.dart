@@ -62,7 +62,7 @@ class Api {
         event.toJson(),
       );
       return data.data;
-    } catch (e) {
+    } on Exception catch (e) {
       log(e.toString());
     }
   }

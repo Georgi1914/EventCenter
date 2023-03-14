@@ -23,4 +23,6 @@ class AppStrings {
   static const String description = 'Description';
   static const String loginAcc = 'Login to Your Account';
   static const String or = 'or';
+  static const String notLoggedIn =
+      'You are not logged in. Do you want to sign in your account?';
 }
