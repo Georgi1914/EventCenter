@@ -15,12 +15,13 @@ class HomeVM extends ChangeNotifier {
 
   List<DomainEvent> events = [];
   List<DomainCategory> categories = [];
-  bool isFavorite = false;
   String selectedFilter = 'All';
+  List<int> favorites = [];
 
   Future<void> init() async {
     events = await _eventRepo.getAllEvents();
     categories = await _categoryRepo.getCategories();
+    favorites = await getFavoriteIds();
     notifyListeners();
   }
 
@@ -34,6 +35,8 @@ class HomeVM extends ChangeNotifier {
 
   DomainEvent getEvent(int index) => events[index];
 
+  int getEventId(int index) => events[index].id;
+
   String formattedDate(int index) =>
       '${DateFormat('yMMMEd').format(events[index].date)} ${DateFormat('Hm').format(events[index].date)}';
 
@@ -42,6 +45,23 @@ class HomeVM extends ChangeNotifier {
   String getCategoryName(int index) => categories[index].name;
 
   bool isSelected(int index) => getCategoryName(index) == selectedFilter;
+
+  Future<void> addFavorite(int favoriteId) async {
+    await _eventRepo.addFavorite(favoriteId);
+    favorites = await getFavoriteIds();
+    notifyListeners();
+  }
+
+  Future<void> removeFavorite(int favoriteId) async {
+    await _eventRepo.removeFavorite(favoriteId);
+    favorites = await getFavoriteIds();
+    notifyListeners();
+  }
+
+  Future<List<int>> getFavoriteIds() async =>
+      await _eventRepo.getFavoritesIds();
+
+  bool isFavorite(int index) => favorites.contains(getEventId(index));
 
   void setSelected(int index) {
     selectedFilter = getCategoryName(index);

@@ -56,8 +56,4 @@ class AuthService {
     } on Exception catch (e) {}
     return null;
   }
-  // Future<void> _confirmEmail(String email) async => await _requests.getRequest(
-  //       '/api/auth/email-confirmation',
-  //       jsonEncode({'email': email}),
-  //     );
 }
