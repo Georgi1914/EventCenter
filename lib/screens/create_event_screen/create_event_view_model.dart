@@ -88,4 +88,12 @@ class CreateEventVM extends ChangeNotifier {
       );
     }
   }
+
+  @override
+  void dispose() {
+    eventNameController.dispose();
+    eventAddressController.dispose();
+    eventDescriptionController.dispose();
+    super.dispose();
+  }
 }
