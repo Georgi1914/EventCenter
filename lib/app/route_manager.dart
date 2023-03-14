@@ -46,6 +46,7 @@ class RouteManager {
           builder: (BuildContext context) => ViewModelBuilder<LoginViewModel>(
             builder: (context, viewModel) => const LoginView(),
             viewModelBuilder: getIt<LoginViewModel>,
+            onModelReady: (viewModel) => viewModel.init(),
           ),
         );
       case descriptionScreen:

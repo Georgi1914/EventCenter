@@ -12,7 +12,7 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 64),
+        padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 16),
         child: Column(
           children: const [
             CustomHeader(text: AppStrings.loginAcc),

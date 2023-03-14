@@ -16,7 +16,7 @@ class LoginButton extends StatelessWidget {
     final viewModel = context.watch<LoginViewModel>();
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: SizedBox(
         width: double.maxFinite,
         child: TextButton(

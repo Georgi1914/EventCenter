@@ -10,29 +10,26 @@ class WrappedInDividersText extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Expanded(
-              child: Divider(
-                color: AppColors.brightGrey,
-              ),
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Expanded(
+            child: Divider(
+              color: AppColors.brightGrey,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                text,
-                style: Theme.of(context).textTheme.headline3,
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.headline3,
             ),
-            const Expanded(
-              child: Divider(
-                color: AppColors.brightGrey,
-              ),
+          ),
+          const Expanded(
+            child: Divider(
+              color: AppColors.brightGrey,
             ),
-          ],
-        ),
+          ),
+        ],
       );
 }

@@ -10,14 +10,20 @@ class LoginViewModel extends ChangeNotifier {
 
   LoginViewModel({required UserRepo repo}) : _repo = repo;
 
+  Future<void> init() async {
+    await removeToken();
+  }
+
   Future<bool> signIn() async {
-    await _repo.signOut();
+    await removeToken();
     FocusManager.instance.primaryFocus?.unfocus();
     final hasSignedIn = await _repo.signIn(
         emailController.value.text, passwordController.value.text);
     _checkEmptyFields();
     return hasSignedIn;
   }
+
+  Future<void> removeToken() async => await _repo.signOut();
 
   String? _checkEmptyFields() {
     if (emailController.value.text.isEmpty ||

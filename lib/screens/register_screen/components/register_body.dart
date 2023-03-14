@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../presentation/string_manager.dart';
+import '../../custom_widgets/custom_header.dart';
 import '../register_view_model.dart';
 import 'register_button.dart';
 import 'register_text_form.dart';
@@ -21,6 +22,7 @@ class RegisterBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: <Widget>[
+                const CustomHeader(text: AppStrings.createNewAccount),
                 RegisterTextForm(
                   textController: viewModel.controllers['firstName'],
                   hintText: AppStrings.firstName,
