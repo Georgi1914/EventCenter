@@ -1,6 +1,8 @@
+import 'package:event_center/models/network/image.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../ui/event.dart';
+import '../ui/picture.dart';
 
 part 'event.g.dart';
 
@@ -21,6 +23,7 @@ class NetworkEvent {
         DateTime.tryParse(attributes.date) ?? DateTime.utc(0),
         attributes.description,
         attributes.address,
+        attributes.mainPicture?.toImage() ?? DomainImage(-1, ''),
       );
 
   factory NetworkEvent.fromJson(Map<String, dynamic> json) =>
@@ -38,8 +41,10 @@ class Attributes {
   final String description;
   @JsonKey(defaultValue: '')
   final String address;
+  final NetworkImage? mainPicture;
 
-  Attributes(this.name, this.date, this.description, this.address);
+  Attributes(
+      this.name, this.date, this.description, this.address, this.mainPicture);
 
   factory Attributes.fromJson(Map<String, dynamic> json) =>
       _$AttributesFromJson(json);

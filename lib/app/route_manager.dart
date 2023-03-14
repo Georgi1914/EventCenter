@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../models/ui/event.dart';
+import '../screens/description_screen/description_view.dart';
+import '../screens/description_screen/description_view_model.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/home/home_viewmodel.dart';
 import '../screens/login_screen/login_view.dart';
@@ -13,6 +16,7 @@ class RouteManager {
   static const String homeScreen = 'home-screen';
   static const String registerScreen = 'register-screen';
   static const String logInScreen = 'login-screen';
+  static const String descriptionScreen = 'description-screen';
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homeScreen:
@@ -36,6 +40,15 @@ class RouteManager {
           builder: (BuildContext context) => ViewModelBuilder<LoginViewModel>(
             builder: (context, viewModel) => const LoginView(),
             viewModelBuilder: getIt<LoginViewModel>,
+          ),
+        );
+      case descriptionScreen:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => ViewModelBuilder<DescriptionVM>(
+            builder: (context, viewModel) => DescriptionScreen(
+              event: settings.arguments as DomainEvent,
+            ),
+            viewModelBuilder: getIt<DescriptionVM>,
           ),
         );
       default:

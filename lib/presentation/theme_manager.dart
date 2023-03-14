@@ -24,7 +24,16 @@ ThemeData getApplicationTheme() => ThemeData(
           fontWeight: FontWeightManager.regular,
           color: AppColors.white,
         ),
-        headline6: TextStyle(color: Colors.red),
+        headline1: TextStyle(
+          fontSize: FontSize.s32,
+          fontWeight: FontWeightManager.bold,
+          color: AppColors.white,
+        ),
+        headline3: TextStyle(
+          fontSize: FontSize.s18,
+          fontWeight: FontWeightManager.bold,
+          color: AppColors.white,
+        ),
       ),
       chipTheme: const ChipThemeData(
         secondarySelectedColor: Colors.white,
@@ -34,4 +43,8 @@ ThemeData getApplicationTheme() => ThemeData(
         ),
       ),
       canvasColor: Colors.transparent,
+      scaffoldBackgroundColor: AppColors.backgroundColor,
+      appBarTheme: const AppBarTheme(
+        color: Colors.transparent,
+      ),
     );

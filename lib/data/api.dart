@@ -11,8 +11,9 @@ class Api {
 
   Future<List<NetworkEvent>> getEvents() async {
     try {
-      const url = '/events';
-      final data = await _requests.getRequest(url);
+      const url = '/api/events';
+      final Map<String, String> queryParams = {'populate': 'mainPicture'};
+      final data = await _requests.getRequest(url, queryParams: queryParams);
       return (data['data'] as List<dynamic>)
           .map((e) => NetworkEvent.fromJson(e as Map<String, dynamic>))
           .toList();
@@ -24,7 +25,7 @@ class Api {
 
   Future<List<NetworkCategory>> getCategories() async {
     try {
-      const url = '/categories';
+      const url = '/api/categories';
       final Map<String, String> queryParams = {'populate': 'events'};
       final data = await _requests.getRequest(url, queryParams: queryParams);
       return (data['data'] as List<dynamic>)
