@@ -47,7 +47,9 @@ class HomeScreenBody extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: AppColors.primaryPurple, width: 2.0),
+                          color: AppColors.primaryPurple,
+                          width: 2.0,
+                        ),
                       ),
                       child: const Icon(
                         Icons.add,

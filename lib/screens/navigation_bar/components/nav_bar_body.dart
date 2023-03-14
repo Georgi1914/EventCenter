@@ -8,6 +8,8 @@ import '../../favorite_screen/favorite_view.dart';
 import '../../favorite_screen/favorite_view_model.dart';
 import '../../home/home_screen.dart';
 import '../../home/home_viewmodel.dart';
+import '../../profile_screen/profile_view.dart';
+import '../../profile_screen/profile_view_model.dart';
 import '../nav_bar_view_model.dart';
 
 class NavBarBody extends StatelessWidget {
@@ -30,12 +32,11 @@ class NavBarBody extends StatelessWidget {
           viewModelBuilder: getIt<FavoriteVM>,
           onModelReady: (viewModel) => viewModel.init(),
         );
-
-      // case PageEnum.profile:
-      //   return ChangeNotifierProvider<ProfileViewModel>(
-      //     create: (_) => ProfileViewModel(),
-      //     child: const ProfilePage(),
-      //   );
+      case PageEnum.profile:
+        return ChangeNotifierProvider<ProfileVM>(
+          create: (_) => getIt<ProfileVM>(),
+          child: const ProfileScreen(),
+        );
     }
   }
 }

@@ -18,6 +18,7 @@ import '../screens/favorite_screen/favorite_view_model.dart';
 import '../screens/home/home_viewmodel.dart';
 import '../screens/login_screen/login_view_model.dart';
 import '../screens/navigation_bar/nav_bar_view_model.dart';
+import '../screens/profile_screen/profile_view_model.dart';
 import '../screens/register_screen/register_view_model.dart';
 import 'auth/auth_interceptor.dart';
 import 'auth/local_storage.dart';
@@ -69,5 +70,6 @@ void setup() {
     ..registerFactory(
       () => CreateEventVM(eventRepo: getIt(), userRepo: getIt()),
     )
+    ..registerFactory(() => ProfileVM(userRepo: getIt()))
     ..registerFactory(DescriptionVM.new);
 }

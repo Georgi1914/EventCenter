@@ -12,6 +12,7 @@ class AppStrings {
       'Please, do not left any empty fields!';
   static const String signUp = 'Sign up';
   static const String signIn = 'Sign in';
+  static const String signOut = 'Sign out';
   static const String invalidCredentials = 'Invalid credentials!';
   static const String accountNotCreated = "You don't have an account?";
   static const String continueAsGuest = 'Continue as Guest';

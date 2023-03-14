@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../presentation/color_manager.dart';
+import '../../../presentation/font_manager.dart';
 import '../home_viewmodel.dart';
 
 class HomeScreenFilter extends StatelessWidget {
@@ -24,6 +25,7 @@ class HomeScreenFilter extends StatelessWidget {
           viewModel.getCategoryName(index),
         ),
         labelStyle: TextStyle(
+          fontSize: FontSize.s18,
           color: viewModel.isSelected(index)
               ? AppColors.white
               : AppColors.primaryPurple,
