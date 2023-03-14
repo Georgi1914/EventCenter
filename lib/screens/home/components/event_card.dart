@@ -19,6 +19,7 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<HomeVM>();
     final theme = Theme.of(context).textTheme;
+    final favorites = viewModel.getFavoriteIds();
 
     return InkWell(
       onTap: () {
@@ -79,6 +80,12 @@ class EventCard extends StatelessWidget {
                 AddressRow(
                   text: viewModel.getEventAddress(index),
                   style: theme.subtitle2,
+                  callback: () => viewModel.isFavorite(index)
+                      ? viewModel.removeFavorite(viewModel.getEventId(index))
+                      : viewModel.addFavorite(viewModel.getEventId(index)),
+                  icon: viewModel.isFavorite(index)
+                      ? Icons.favorite
+                      : Icons.favorite_outline,
                 ),
               ],
             ),

@@ -10,6 +10,7 @@ import '../data/repositories/events/event_repository_mappers.dart';
 import '../data/repositories/user/user.dart';
 import '../data/requests.dart';
 import '../data/services/auth_service.dart';
+import '../data/services/favorite_service.dart';
 import '../global_variables.dart';
 import '../screens/create_event_screen/create_event_view_model.dart';
 import '../screens/description_screen/description_view_model.dart';
@@ -25,7 +26,10 @@ final getIt = GetIt.instance;
 
 void setup() {
   getIt
-    ..registerFactory(() => HomeVM(eventRepo: getIt(), categoryRepo: getIt()))
+    ..registerFactory(
+      () =>
+          HomeVM(eventRepo: getIt(), categoryRepo: getIt(), userRepo: getIt()),
+    )
     ..registerLazySingleton(
       () => Dio(BaseOptions(baseUrl: baseURL))
         ..interceptors.add(AuthInterceptor(storage: getIt())),
@@ -37,7 +41,9 @@ void setup() {
     )
     ..registerLazySingleton<Requests>(() => Requests(dio: getIt()))
     ..registerLazySingleton(() => Api(requests: getIt()))
-    ..registerLazySingleton(() => EventRepo(api: getIt(), mappers: getIt()))
+    ..registerLazySingleton(
+      () => EventRepo(api: getIt(), mappers: getIt(), favoriteService: getIt()),
+    )
     ..registerLazySingleton(() => CategoryRepo(api: getIt(), mappers: getIt()))
     ..registerLazySingleton(EventRepoMappers.new)
     ..registerLazySingleton(CategoryRepoMappers.new)
@@ -48,7 +54,14 @@ void setup() {
     )
     ..registerFactory(() => RegisterViewModel(authServices: getIt()))
     ..registerLazySingleton(
-      () => UserRepo(service: getIt(), storage: getIt()),
+      () => UserRepo(
+        service: getIt(),
+        storage: getIt(),
+        favoriteService: getIt(),
+      ),
+    )
+    ..registerFactory(
+      () => FavoriteService(requests: getIt(), authService: getIt()),
     )
     ..registerFactory(() => FavoriteVM(userRepo: getIt(), eventRepo: getIt()))
     ..registerFactory(() => LoginViewModel(repo: getIt()))

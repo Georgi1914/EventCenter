@@ -4,16 +4,22 @@ import '../../../models/network/event.dart';
 import '../../../models/ui/event.dart';
 import '../../../models/ui/event_type.dart';
 import '../../api.dart';
+import '../../services/favorite_service.dart';
 import 'event_interface.dart';
 import 'event_repository_mappers.dart';
 
 class EventRepo implements EventRepositoryInterface {
   final Api _api;
+  final FavoriteService _favoriteService;
   final EventRepoMappers _mappers;
 
-  EventRepo({required Api api, required EventRepoMappers mappers})
+  EventRepo(
+      {required Api api,
+      required EventRepoMappers mappers,
+      required FavoriteService favoriteService})
       : _api = api,
-        _mappers = mappers;
+        _mappers = mappers,
+        _favoriteService = favoriteService;
 
   @override
   Future<List<DomainEvent>> getAllEvents() async {
@@ -35,6 +41,7 @@ class EventRepo implements EventRepositoryInterface {
     return _mappers.mapNetworkEventsToUi(networkEvents);
   }
 
+  @override
   Future<void> createEvent(EventType event, FormData image) async {
     final imageResponse = await _uploadImage(image);
     event.mainPicture = imageResponse.data[0]['id'];
@@ -44,5 +51,16 @@ class EventRepo implements EventRepositoryInterface {
   Future<Response> _uploadImage(FormData image) async {
     final response = await _api.uploadImage(image);
     return response;
+  }
+
+  Future<List<int>> getFavoritesIds() async =>
+      await _favoriteService.getFavoriteIds();
+
+  Future<void> addFavorite(int favoriteId) async {
+    await _favoriteService.addFavorite(favoriteId);
+  }
+
+  Future<void> removeFavorite(int favoriteId) async {
+    await _favoriteService.removeFavorite(favoriteId);
   }
 }

@@ -69,7 +69,9 @@ class RouteManager {
       case navigation:
         return MaterialPageRoute(
           builder: (BuildContext context) => ViewModelBuilder<NavBarVM>(
-            builder: (context, viewModel) => const NavBarView(),
+            builder: (context, viewModel) => NavBarView(
+              isUser: settings.arguments as bool,
+            ),
             viewModelBuilder: getIt<NavBarVM>,
           ),
         );

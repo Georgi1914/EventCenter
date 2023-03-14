@@ -22,8 +22,9 @@ class RegisterOrGuestColumn extends StatelessWidget {
           const WrappedInDividersText(text: AppStrings.or),
           CustomElevatedButton(
             text: AppStrings.continueAsGuest,
-            navigation: () =>
-                Navigator.pushNamed(context, RouteManager.navigation),
+            navigation: () => Navigator.pushNamed(
+                context, RouteManager.navigation,
+                arguments: false),
           ),
         ],
       );

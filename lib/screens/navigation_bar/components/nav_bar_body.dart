@@ -11,7 +11,9 @@ import '../../home/home_viewmodel.dart';
 import '../nav_bar_view_model.dart';
 
 class NavBarBody extends StatelessWidget {
-  const NavBarBody({super.key});
+  const NavBarBody({required this.isUser, super.key});
+
+  final bool isUser;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class NavBarBody extends StatelessWidget {
         return ViewModelBuilder<HomeVM>(
           builder: (context, viewModel) => const HomeScreen(),
           viewModelBuilder: getIt<HomeVM>,
-          onModelReady: (viewModel) => viewModel.init(),
+          onModelReady: (viewModel) => viewModel.init(isUser),
         );
       case PageEnum.favorites:
         return ViewModelBuilder<FavoriteVM>(

@@ -13,29 +13,37 @@ class FavoriteVM extends ChangeNotifier {
       : _userRepo = userRepo,
         _eventRepo = eventRepo;
 
-  List<DomainEvent> favorites = [];
+  List<DomainEvent> _favorites = [];
 
   Future<void> init() async {
-    favorites = await getFavorites();
+    _favorites = await getFavorites();
     notifyListeners();
   }
 
-  int get eventsLength => favorites.length;
+  int get eventsLength => _favorites.length;
 
-  String getEventAddress(int index) => favorites[index].address;
+  String getEventAddress(int index) => _favorites[index].address;
 
-  String getEventImage(int index) => favorites[index].image.url;
+  String getEventImage(int index) => _favorites[index].image.url;
 
-  String getEventName(int index) => favorites[index].name;
+  String getEventName(int index) => _favorites[index].name;
 
-  DomainEvent getEvent(int index) => favorites[index];
+  DomainEvent getEvent(int index) => _favorites[index];
+
+  int getEventId(int index) => _favorites[index].id;
 
   String formattedDate(int index) =>
-      '${DateFormat('yMMMEd').format(favorites[index].date)} ${DateFormat('Hm').format(favorites[index].date)}';
+      '${DateFormat('yMMMEd').format(_favorites[index].date)} ${DateFormat('Hm').format(_favorites[index].date)}';
 
   Future<List<DomainEvent>> getFavorites() async {
     final ids = await _userRepo.getFavoriteIds();
     final List<DomainEvent> list = await _eventRepo.getEventsFromIds(ids);
     return list;
+  }
+
+  Future<void> removeFavorite(int favoriteId) async {
+    await _eventRepo.removeFavorite(favoriteId);
+    _favorites = await getFavorites();
+    notifyListeners();
   }
 }

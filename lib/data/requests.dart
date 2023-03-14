@@ -16,8 +16,27 @@ class Requests {
     Options? option,
     Map<String, String>? queryParams,
   }) async {
-    final Response response = await _dio.post(url,
-        options: option, data: body, queryParameters: queryParams);
+    final Response response = await _dio.post(
+      url,
+      options: option,
+      data: body,
+      queryParameters: queryParams,
+    );
+    return response;
+  }
+
+  Future putRequest(
+    String url,
+    Object? body, {
+    Options? option,
+    Map<String, String>? queryParams,
+  }) async {
+    final Response response = await _dio.put(
+      url,
+      options: option,
+      data: body,
+      queryParameters: queryParams,
+    );
     return response;
   }
 }

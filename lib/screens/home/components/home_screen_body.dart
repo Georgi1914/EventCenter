@@ -23,27 +23,41 @@ class HomeScreenBody extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Text('Nqkakvo ime eno de tri'),
-                const Spacer(),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RouteManager.createEvent),
-                  child: Container(
-                    width: 50.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          color: AppColors.primaryPurple, width: 2.0),
-                    ),
-                    child: const Icon(
-                      Icons.add,
-                      color: AppColors.primaryPurple,
-                      size: 30.0,
-                    ),
-                  ),
+                if (viewModel.getMeNames().isNotEmpty)
+                  const Icon(
+                    Icons.person,
+                    color: AppColors.primaryPurple,
+                    size: 32,
+                  )
+                else
+                  const SizedBox(),
+                Text(
+                  viewModel.getMeNames(),
+                  style: Theme.of(context).textTheme.headline3,
                 ),
+                const Spacer(),
+                if (viewModel.hasLogged)
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    onTap: () =>
+                        Navigator.pushNamed(context, RouteManager.createEvent),
+                    child: Container(
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.primaryPurple, width: 2.0),
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: AppColors.primaryPurple,
+                        size: 30.0,
+                      ),
+                    ),
+                  )
+                else
+                  const SizedBox(),
               ],
             ),
             SingleChildScrollView(

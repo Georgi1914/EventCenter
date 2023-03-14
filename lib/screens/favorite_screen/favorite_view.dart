@@ -83,6 +83,9 @@ class FavoriteScreen extends StatelessWidget {
                       AddressRow(
                         text: viewModel.getEventAddress(index),
                         style: theme.subtitle2,
+                        callback: () async => viewModel
+                            .removeFavorite(viewModel.getEventId(index)),
+                        icon: Icons.favorite,
                       ),
                     ],
                   ),

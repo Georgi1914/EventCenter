@@ -7,11 +7,15 @@ class AddressRow extends StatelessWidget {
   const AddressRow({
     required this.text,
     required this.style,
+    required this.callback,
+    required this.icon,
     super.key,
   });
 
   final String text;
   final TextStyle? style;
+  final VoidCallback callback;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -28,9 +32,9 @@ class AddressRow extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
-            child: const Icon(
-              Icons.favorite_outline,
+            onTap: callback,
+            child: Icon(
+              icon,
               size: 24,
               color: AppColors.primaryPurple,
             ),
