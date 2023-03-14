@@ -54,8 +54,6 @@ class CreateEventVM extends ChangeNotifier {
   }
 
   Future<void> setBinaryPickedImage(File file) async {
-    print(file.path);
-
     _binaryPickedImage = FormData.fromMap({
       'fileInfo': {
         'name': file.uri.pathSegments.last,

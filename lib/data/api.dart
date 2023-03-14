@@ -57,8 +57,6 @@ class Api {
   Future createEvent(EventType event) async {
     try {
       const url = '/api/events';
-      // final FormData formData = FormData.fromMap(event.toJson());
-      // print(event.toJson());
       final data = await _requests.postRequest(
         url,
         event.toJson(),

@@ -28,7 +28,6 @@ class AuthService {
 
   Future<void> signUp(UserDataModel user) async {
     try {
-      print('object');
       final response = await _requests.postRequest(
         '/api/auth/local/register',
         jsonEncode({
@@ -40,7 +39,6 @@ class AuthService {
         }),
         //todo create model
       );
-      print('object');
       if (response.statusCode != 200) {
         exceptionMessage = response.data.toString();
       }
