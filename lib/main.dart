@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+import 'app/get_it.dart';
+import 'app/route_manager.dart';
+import 'presentation/theme_manager.dart';
+
+Future<void> main() async {
+  setup();
+  await dotenv.load();
   runApp(const MyApp());
 }
 
@@ -10,16 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: RouteManager.logInScreen,
+        onGenerateRoute: RouteManager.generateRoute,
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
         ],
         supportedLocales: const [
-          Locale('en', ''), // English, no country code
-          Locale('bg', ''), // Spanish, no country code
+          Locale('en', ''),
         ],
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: getApplicationTheme(),
       );
 }
