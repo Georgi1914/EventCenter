@@ -46,7 +46,7 @@ class DateTimeRow extends StatelessWidget {
             children: [
               Text(
                 selectedDateTime ?? AppStrings.dateAndTime,
-                style: theme.headline4,
+                style: theme.headline6,
               ),
               const Icon(
                 Icons.calendar_month_outlined,
