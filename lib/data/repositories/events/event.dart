@@ -44,8 +44,9 @@ class EventRepo implements EventRepositoryInterface {
   @override
   Future<void> createEvent(EventType event, FormData image) async {
     final imageResponse = await _uploadImage(image);
+
     event.mainPicture = imageResponse.data[0]['id'];
-    final response = await _api.createEvent(event);
+    await _api.createEvent(event);
   }
 
   Future<Response> _uploadImage(FormData image) async {

@@ -20,6 +20,7 @@ class CreateEventVM extends ChangeNotifier {
   TimeOfDay? pickedTime;
   DateTime? _selectedDateTime;
   FormData? _binaryPickedImage;
+  File? imageToDisplay;
 
   CreateEventVM({required EventRepo eventRepo, required UserRepo userRepo})
       : _eventRepo = eventRepo,
@@ -45,15 +46,20 @@ class CreateEventVM extends ChangeNotifier {
     return null;
   }
 
+  FormData? get binaryPickedImage => _binaryPickedImage;
+
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       await setBinaryPickedImage(File(pickedFile.path));
+      notifyListeners();
     }
   }
 
   Future<void> setBinaryPickedImage(File file) async {
+    imageToDisplay = file;
+
     _binaryPickedImage = FormData.fromMap({
       'fileInfo': {
         'name': file.uri.pathSegments.last,
@@ -80,7 +86,7 @@ class CreateEventVM extends ChangeNotifier {
           eventAddressController.value.text,
           4,
           myId,
-          4, //todo take the id from the upload request
+          4,
         ),
         _pickedImage,
       );

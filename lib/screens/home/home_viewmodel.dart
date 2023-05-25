@@ -12,6 +12,7 @@ class HomeVM extends ChangeNotifier {
   final EventRepo _eventRepo;
   final CategoryRepo _categoryRepo;
   final UserRepo _userRepo;
+
   HomeVM(
       {required EventRepo eventRepo,
       required CategoryRepo categoryRepo,

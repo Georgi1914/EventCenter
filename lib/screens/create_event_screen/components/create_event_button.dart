@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app/route_manager.dart';
 import '../../../presentation/color_manager.dart';
 import '../create_event_view_model.dart';
 
@@ -12,10 +13,18 @@ class CreateEventButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CreateEventVM>();
+
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: viewModel.createEvent,
+        onPressed: () async {
+          await viewModel.createEvent();
+          Navigator.popAndPushNamed(
+            context,
+            RouteManager.navigation,
+            arguments: true,
+          );
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryPurple,
           shape: RoundedRectangleBorder(

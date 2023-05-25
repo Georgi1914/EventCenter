@@ -16,41 +16,44 @@ class DateTimeRow extends StatelessWidget {
     final viewModel = context.watch<CreateEventVM>();
     final selectedDateTime = viewModel.getTimeAsString();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      width: 380,
-      height: 56,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: InkWell(
-        onTap: () async {
-          viewModel
-            ..pickedDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(1900),
-              lastDate: DateTime(2100),
-            )
-            ..pickedTime = await showTimePicker(
-              context: context,
-              initialTime: TimeOfDay.now(),
-            )
-            ..setPickedDate();
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              selectedDateTime ?? AppStrings.dateAndTime,
-              style: theme.headline4,
-            ),
-            const Icon(
-              Icons.calendar_month_outlined,
-              color: Colors.white,
-            ),
-          ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.cardColor,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        width: double.maxFinite,
+        height: 48,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: InkWell(
+          onTap: () async {
+            viewModel
+              ..pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(1900),
+                lastDate: DateTime(2100),
+              )
+              ..pickedTime = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(),
+              )
+              ..setPickedDate();
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                selectedDateTime ?? AppStrings.dateAndTime,
+                style: theme.headline4,
+              ),
+              const Icon(
+                Icons.calendar_month_outlined,
+                color: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -11,6 +11,8 @@ class AuthService {
 
   String exceptionMessage = '';
 
+  UserFav? currentUser;
+
   Future<String?> signIn(String email, String password) async {
     try {
       final response = await _requests.postRequest(
@@ -46,15 +48,22 @@ class AuthService {
     }
   }
 
-  Future<UserFav?> getMe() async {
+  Future<UserFav?> getMe({bool? refetch}) async {
     try {
+      if (currentUser != null && refetch != true) {
+        return currentUser;
+      }
+
       final Map<String, String> queryParams = {'populate': 'favoriteEvents'};
       final response =
           await _requests.getRequest('/api/users/me', queryParams: queryParams);
-      return UserFav.fromJson(response);
+
+      return currentUser = UserFav.fromJson(response);
     } on Exception catch (e) {
       print(e.toString());
     }
     return null;
   }
+
+  void removeCurrentUser() => currentUser = null;
 }

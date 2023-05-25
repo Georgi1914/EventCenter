@@ -11,6 +11,16 @@ class ImagePickWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CreateEventVM>();
-    return FloatingActionButton(onPressed: viewModel.pickImage);
+
+    // return FloatingActionButton(onPressed: viewModel.pickImage);
+    final image = viewModel.imageToDisplay;
+    if (image != null) {
+      return Image.file(image);
+    } else {
+      return ElevatedButton(
+        onPressed: viewModel.pickImage,
+        child: Text('Select Image'),
+      );
+    }
   }
 }

@@ -19,7 +19,6 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<HomeVM>();
     final theme = Theme.of(context).textTheme;
-    final favorites = viewModel.getFavoriteIds();
 
     return InkWell(
       onTap: () {
