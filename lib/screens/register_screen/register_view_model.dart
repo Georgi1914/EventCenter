@@ -81,4 +81,12 @@ class RegisterViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  @override
+  void dispose() {
+    controllers.forEach((key, value) {
+      value.dispose();
+    });
+    super.dispose();
+  }
 }
