@@ -15,19 +15,23 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    return TextField(
-      controller: controller,
-      style: const TextStyle(color: AppColors.white),
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: theme.headline4,
-        filled: true,
-        fillColor: AppColors.cardColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.0),
-          borderSide: BorderSide.none,
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: TextField(
+        controller: controller,
+        style: theme.headline6,
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: theme.headline4,
+          filled: true,
+          fillColor: AppColors.cardColor,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16.0),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
       ),
     );
   }

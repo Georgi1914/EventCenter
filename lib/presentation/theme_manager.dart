@@ -72,4 +72,15 @@ ThemeData getApplicationTheme() => ThemeData(
       appBarTheme: const AppBarTheme(
         color: Colors.transparent,
       ),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: Colors.white,
+        dialBackgroundColor: Colors.blue,
+        dialTextColor: Colors.white,
+        hourMinuteTextColor: Colors.black,
+        entryModeIconColor: Colors.blue,
+        helpTextStyle: TextStyle(color: Colors.red),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
     );

@@ -18,7 +18,9 @@ class LoginViewModel extends ChangeNotifier {
     await removeToken();
     FocusManager.instance.primaryFocus?.unfocus();
     final hasSignedIn = await _repo.signIn(
-        emailController.value.text, passwordController.value.text);
+      emailController.value.text,
+      passwordController.value.text,
+    );
     _checkEmptyFields();
     return hasSignedIn;
   }

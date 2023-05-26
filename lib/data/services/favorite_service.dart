@@ -17,14 +17,8 @@ class FavoriteService {
 
   Future<List<int>> getFavoriteIds() async {
     final me = await _authService.getMe();
-    final List<int> ids = [];
-    final favorites = me?.favoriteEvents;
-    if (favorites != null) {
-      for (final element in favorites) {
-        ids.add(element.id);
-      }
-    }
-    return ids;
+
+    return me?.favoriteEvents.map((e) => e.id).toList() ?? [];
   }
 
   Future<int> getMeId() async {
@@ -41,6 +35,9 @@ class FavoriteService {
       url,
       jsonEncode({'favoriteEvents': newList.map((e) => e.toString()).toList()}),
     );
+
+    await _authService.getMe(refetch: true);
+
     return response;
   }
 
@@ -53,6 +50,9 @@ class FavoriteService {
       url,
       jsonEncode({'favoriteEvents': newList.map((e) => e.toString()).toList()}),
     );
+
+    await _authService.getMe(refetch: true);
+
     return response;
   }
 }

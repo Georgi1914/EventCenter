@@ -33,6 +33,7 @@ class UserRepo implements UserRepositoryInterface {
   @override
   Future<void> signOut() async {
     await _storage.removeToken();
+    _service.removeCurrentUser();
   }
 
   Future<int> getMeId() async {

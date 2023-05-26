@@ -25,4 +25,5 @@ class AppStrings {
   static const String or = 'or';
   static const String notLoggedIn =
       'You are not logged in. Do you want to sign in your account?';
+  static const String selectImage = 'Select Image';
 }

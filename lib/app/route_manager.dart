@@ -15,24 +15,14 @@ import 'get_it.dart';
 import 'viewmodel_builder.dart';
 
 class RouteManager {
-  // static const String homeScreen = 'home-screen';
   static const String registerScreen = 'register-screen';
   static const String logInScreen = 'login-screen';
   static const String descriptionScreen = 'description-screen';
-  // static const String favoritesScreen = 'favorites-screen';
   static const String navigation = 'navigation';
   static const String createEvent = 'create-event-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case homeScreen:
-      //   return MaterialPageRoute(
-      //     builder: (BuildContext context) => ViewModelBuilder<HomeVM>(
-      //       builder: (context, viewModel) => const HomeScreen(),
-      //       viewModelBuilder: getIt<HomeVM>,
-      //       onModelReady: (viewModel) => viewModel.init(),
-      //     ),
-      //   );
       case registerScreen:
         return MaterialPageRoute(
           builder: (BuildContext context) =>
@@ -58,14 +48,6 @@ class RouteManager {
             viewModelBuilder: getIt<DescriptionVM>,
           ),
         );
-      // case favoritesScreen:
-      //   return MaterialPageRoute(
-      //     builder: (BuildContext context) => ViewModelBuilder<FavoriteVM>(
-      //       builder: (context, viewModel) => const FavoriteScreen(),
-      //       viewModelBuilder: getIt<FavoriteVM>,
-      //       onModelReady: (viewModel) => viewModel.init(),
-      //     ),
-      //   );
       case navigation:
         return MaterialPageRoute(
           builder: (BuildContext context) => ViewModelBuilder<NavBarVM>(
